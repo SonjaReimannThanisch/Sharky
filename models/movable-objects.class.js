@@ -10,14 +10,18 @@ class movableObject {
         this.img.src = path;
     }
 
-    draw(ctx) {
-        if (this.img && ctx) {
-            ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-        }
-    }
+    // draw(ctx) {
+    //     if (this.img && ctx) {
+    //         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    //     }
+    // }
 
     moveRight() {
         console.log('Move to the 1 Right');
         
+    }
+
+    moveLeft() {
+
     }
 }
