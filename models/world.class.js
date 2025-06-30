@@ -13,12 +13,12 @@ class world {
         this.mainCharacter = new character();
 
 
-        const drawInterval = setInterval(() => {
-            if (this.mainCharacter.img.complete) {
-                this.draw(); // Nur zeichnen, wenn Bild geladen
-                clearInterval(drawInterval); // Dann aufhören
-            }
-        }, 100);
+        // const drawInterval = setInterval(() => {
+        //     if (this.mainCharacter.img.complete) {
+        //         this.draw(); // Nur zeichnen, wenn Bild geladen
+        //         clearInterval(drawInterval); // Dann aufhören
+        //     }
+        // }, 100);
     }
 
     draw() {
@@ -39,6 +39,8 @@ class world {
                 enemy.height
             );
         });
+
+        requestAnimationFrame(this.draw)
     }
 
 }
