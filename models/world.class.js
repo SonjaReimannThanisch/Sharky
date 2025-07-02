@@ -1,27 +1,36 @@
 class world {
     mainCharacter = new character();
     enemies = [
-        new pufferfisch(200, 350),
-        new pufferfisch(350, 350),
-        new pufferfisch(500, 350),
+        new pufferfisch(),
+        new pufferfisch(),
+        new pufferfisch(),
     ];
-
+    waves = [];
+    canvas;
     ctx;
 
     constructor(canvas) {
+        this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
-        this.mainCharacter = new character();
+        this.waves.push(new Wave(canvas.width, canvas.height));
+        this.draw();
 
-
-        // const drawInterval = setInterval(() => {
-        //     if (this.mainCharacter.img.complete) {
-        //         this.draw(); // Nur zeichnen, wenn Bild geladen
-        //         clearInterval(drawInterval); // Dann aufhören
-        //     }
-        // }, 100);
     }
 
+
     draw() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.waves.forEach(wave => {
+            this.ctx.drawImage(
+                wave.img,
+                wave.x,
+                wave.y,
+                wave.width,
+                wave.height
+            );
+        });
+
         this.ctx.drawImage(
             this.mainCharacter.img,
             this.mainCharacter.x,
@@ -36,11 +45,15 @@ class world {
                 enemy.x,
                 enemy.y,
                 enemy.width,
-                enemy.height
-            );
+                enemy.height);
         });
 
-        requestAnimationFrame(this.draw)
+
+        //Draw() wird immer wieder aufgerufen
+        self = this;
+        requestAnimationFrame(function(){
+            self.draw(); // hier wird es zu self, weil innerhalt der draw funktion und der requestanim......this nicht mehr funktioniert,d eswegen haben wir hier dem this eine neue variable zugeordnet
+        })
     }
 
 }
