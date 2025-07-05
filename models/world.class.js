@@ -6,6 +6,7 @@ class world {
         new pufferfisch(),
     ];
     waves = [];
+    lights = [];
     canvas;
     ctx;
 
@@ -20,6 +21,16 @@ class world {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.lights.forEach(light => {
+            this.ctx.drawImage(
+                light.img,
+                light.x,
+                light.y,
+                light.width,
+                light.height
+            );
+        });
 
         this.waves.forEach(wave => {
             this.ctx.drawImage(
