@@ -6,13 +6,17 @@ class world {
         new pufferfisch(),
     ];
     waves = [];
-    lights = [];
+    lights = [
+        new Light()
+    ];
     canvas;
     ctx;
 
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
+        this.lights = [
+        new Light(canvas.width, canvas.height)];
         this.waves.push(new Wave(canvas.width, canvas.height));
         this.draw();
 
@@ -22,16 +26,6 @@ class world {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.lights.forEach(light => {
-            this.ctx.drawImage(
-                light.img,
-                light.x,
-                light.y,
-                light.width,
-                light.height
-            );
-        });
-
         this.waves.forEach(wave => {
             this.ctx.drawImage(
                 wave.img,
@@ -39,6 +33,16 @@ class world {
                 wave.y,
                 wave.width,
                 wave.height
+            );
+        });
+
+        this.lights.forEach(light => {
+            this.ctx.drawImage(
+                light.img,
+                light.x,
+                light.y,
+                light.width,
+                light.height
             );
         });
 
