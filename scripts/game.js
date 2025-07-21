@@ -9,4 +9,5 @@ function init() {
     console.log('My character is', gameWorld.mainCharacter);
     console.log('My enemy is', gameWorld.enemies);
     console.log('My light is', gameWorld.lights);
+    console.log('My light is', gameWorld.background);
 }

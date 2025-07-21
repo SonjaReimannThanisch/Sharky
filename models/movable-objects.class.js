@@ -8,7 +8,10 @@ class movableObject {
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
+        this.img.onload = () => console.log('✔️ Loaded:', path);
+        this.img.onerror = () => console.warn('❌ Fehler beim Laden:', path);
     }
+
 
 
     moveRight() {
