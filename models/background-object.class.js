@@ -3,8 +3,8 @@ class BackgroundObject extends movableObject {
         super();
         this.loadImage(imagePath);
         this.x = 0;
-        this.y = 480;         // oder teste mit 400, 420…
-        this.height = 480;    // Bildhöhe anpassen
+        this.y = 480;
+        this.height = 480;
         this.width = canvasWidth;
     }
 }
