@@ -27,11 +27,13 @@ class world {
             new Light(canvas.width, canvas.height)
         ];
 
-        this.background = new BackgroundObject(
-            'img/3. Background/Layers/2. Floor/D1.png',
-            canvas.width,
-            canvas.height
-        );
+
+        this.backgrounds = [
+            new BackgroundObject('img/3. Background/Layers/4.Fondo 2/D1.png', canvas.width, canvas.height),
+            new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', canvas.width, canvas.height),
+            new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png',  canvas.width, canvas.height),
+        ];
+
 
 
         this.draw();
@@ -40,14 +42,24 @@ class world {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.waves.forEach(w => this.addToMap(w));
+        this.addObjectsToMap(this.backgrounds);
+        this.addObjectsToMap(this.waves);
+        this.addObjectsToMap(this.backgrounds);
+        // this.addToMap(this.backgrounds);
+        this.addObjectsToMap(this.lights);
+        this.addObjectsToMap(this.enemies);
 
-        this.addToMap(this.background);
-        this.lights.forEach(l => this.addToMap(l));
+
         this.enemies.forEach(e => this.addToMap(e));
         this.addToMap(this.mainCharacter);
 
         requestAnimationFrame(() => this.draw());
+    }
+
+
+
+    addObjectsToMap(objects) {
+        objects.forEach(o => this.addToMap(o));
     }
 
     addToMap(mo) {
