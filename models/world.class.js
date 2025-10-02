@@ -29,7 +29,7 @@ class world {
 
 
         this.backgrounds = [
-            new BackgroundObject('img/3. Background/Layers/4.Fondo 2/D1.png', canvas.width, canvas.height),
+            new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', canvas.width, canvas.height),
             new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', canvas.width, canvas.height),
             new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png',  canvas.width, canvas.height),
         ];
@@ -45,7 +45,6 @@ class world {
         this.addObjectsToMap(this.backgrounds);
         this.addObjectsToMap(this.waves);
         this.addObjectsToMap(this.backgrounds);
-        // this.addToMap(this.backgrounds);
         this.addObjectsToMap(this.lights);
         this.addObjectsToMap(this.enemies);
 
@@ -63,7 +62,6 @@ class world {
     }
 
     addToMap(mo) {
-        // this.ctx.strokeStyle = 'red';
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     }
 }

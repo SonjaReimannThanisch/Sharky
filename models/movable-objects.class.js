@@ -4,6 +4,7 @@ class movableObject {
     width = 150;
     height = 150;
     img;
+    imageCache = {};
 
     loadImage(path) {
         this.img = new Image();
@@ -11,6 +12,46 @@ class movableObject {
         this.img.onload = () => console.log('✔️ Loaded:', path);
         this.img.onerror = () => console.warn('❌ Fehler beim Laden:', path);
     }
+
+    /**
+     * Lädt Bilder.
+     * @param {Array} arr - [
+     * 'img/1.Sharkie/1.IDLE/2.png', 
+     * 'img/1.Sharkie/1.IDLE/3.png', 
+     * 'img/1.Sharkie/1.IDLE/4.png', 
+     * 'img/1.Sharkie/1.IDLE/5.png',
+     * 'img/1.Sharkie/1.IDLE/6.png',
+     * 'img/1.Sharkie/1.IDLE/7.png',
+     * 'img/1.Sharkie/1.IDLE/8.png',
+     * 'img/1.Sharkie/1.IDLE/9.png',
+     * 'img/1.Sharkie/1.IDLE/10.png',
+     * 'img/1.Sharkie/1.IDLE/11.png',
+     * 'img/1.Sharkie/1.IDLE/12.png',
+     * 'img/1.Sharkie/1.IDLE/13.png',
+     * 'img/1.Sharkie/1.IDLE/14.png',
+     * 'img/1.Sharkie/1.IDLE/15.png',
+     * 'img/1.Sharkie/1.IDLE/16.png',
+     * 'img/1.Sharkie/1.IDLE/17.png',
+     * 'img/1.Sharkie/1.IDLE/18.png',
+     * ]
+     */
+    loadImages(arr) {
+        arr.forEach((path) => {
+            let img = new Image();
+            img.src = path;
+            this.imageCache[path] = img;
+        });
+
+    }
+    // loadImages(arr) {
+    //     arr.forEach((path) => {
+    //         const img = new Image();
+    //         img.src = path;
+    //         this.imageCache[path] = img;
+    //         img.onload  = () => console.log('✔️ Loaded:', path);
+    //         img.onerror = () => console.warn('❌ Fehler beim Laden:', path);
+    //     });
+    // }
 
 
 
