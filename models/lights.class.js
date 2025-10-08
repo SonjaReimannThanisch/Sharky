@@ -1,4 +1,9 @@
 class Light extends movableObject {
+    x = 20;
+    height = 250;
+    width = 250;
+
+
     constructor(canvasWidth, canvasHeight) {
         super();
         this.loadImage('img/3. Background/Legacy/Layers/1. Light/1.png');
@@ -10,8 +15,7 @@ class Light extends movableObject {
     }
 
     animate() {
-        setInterval(() => {
-            this.x -= 0.15;
-        }, 1000 / 60);
+        this.moveLeft();
     }
+
 }

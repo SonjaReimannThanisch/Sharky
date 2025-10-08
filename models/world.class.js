@@ -12,6 +12,7 @@ class world {
         this.ctx = canvas.getContext('2d');
 
         this.mainCharacter = new character();
+        this.keyboard = new keyboard();
 
         this.enemies = [
             new pufferfisch(),
@@ -33,7 +34,6 @@ class world {
             new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', canvas.width, canvas.height),
             new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png',  canvas.width, canvas.height),
         ];
-
 
 
         this.draw();

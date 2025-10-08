@@ -21,9 +21,8 @@ class character extends movableObject {
             'img/1.Sharkie/1.IDLE/15.png',
             'img/1.Sharkie/1.IDLE/16.png',
             'img/1.Sharkie/1.IDLE/17.png',
-            'img/1.Sharkie/1.IDLE/18.png',
-        ];
-    currentImage = 0;   
+            'img/1.Sharkie/1.IDLE/18.png'
+        ]; 
 
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
@@ -38,7 +37,7 @@ class character extends movableObject {
             let path = this.IMAGES_MOVE[i];
             this.img = this.imageCache[path];
             this.currentImage++;
-        }, 2000);
+        }, 200);
     }
 
     jump() {
