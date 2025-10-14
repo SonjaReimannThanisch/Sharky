@@ -12,7 +12,7 @@ class world {
         this.ctx = canvas.getContext('2d');
 
         this.mainCharacter = new character();
-        this.keyboard = new keyboard();
+        this.keyboard = new Keyboard(canvas.width, canvas.height);
 
         this.enemies = [
             new pufferfisch(),
@@ -43,16 +43,21 @@ class world {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.addObjectsToMap(this.backgrounds);
+        this.ctx.save();
+        this.ctx.globalAlpha = 0.25;
         this.addObjectsToMap(this.waves);
-        this.addObjectsToMap(this.backgrounds);
+        this.ctx.restore();
         this.addObjectsToMap(this.lights);
         this.addObjectsToMap(this.enemies);
 
-
-        this.enemies.forEach(e => this.addToMap(e));
         this.addToMap(this.mainCharacter);
+        this.addToMap(this.keyboard);
+
 
         requestAnimationFrame(() => this.draw());
+
+
+
     }
 
 

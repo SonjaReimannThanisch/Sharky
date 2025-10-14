@@ -1,13 +1,18 @@
-class keyboard extends movableObject {
-    height = 280;
-    width = 200;
+class Keyboard extends movableObject {
+    leftPressed = false;
+    rightPressed = false;
+    upPressed = false;
+    downPressed = false;
+    SPACE = false;
+    height = 100;
+    width = 165;
     y = 80;
 
-        constructor() {
+        constructor(canvasWidth, canvasHeight) {
         super();
         this.loadImage('img/6.Botones/Key/arrow keys.png');
-        this.x = 0;
-        this.y = 0;
+        this.x = canvasWidth - this.width - 20;
+        this.y = canvasHeight - this.height - 15;
 
     }
 }

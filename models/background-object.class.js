@@ -4,7 +4,7 @@ class BackgroundObject extends movableObject {
     this.width = canvasWidth;
     this.height = canvasHeight;
     this.x = 0;
-    this.y = canvasHeight - this.height;
+    this.y = 0;
   }
 }
 
