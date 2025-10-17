@@ -4,6 +4,7 @@ class Keyboard extends movableObject {
     UP = false;
     DOWN = false;
     SPACE = false;
+    
     height = 100;
     width = 165;
     y = 80;

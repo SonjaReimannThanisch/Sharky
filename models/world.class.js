@@ -6,8 +6,9 @@ class world {
     background;
     canvas;
     ctx;
+    keyboard;
 
-    constructor(canvas) {
+    constructor(canvas, keyboard) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
 
@@ -35,6 +36,8 @@ class world {
             new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png',  canvas.width, canvas.height),
         ];
 
+        this.keyboard  = keyboard;
+        this.setWorld();
 
         this.draw();
     }
@@ -60,7 +63,9 @@ class world {
 
     }
 
-
+    setWorld() {
+        this.mainCharacter.world = this;
+    }
 
     addObjectsToMap(objects) {
         objects.forEach(o => this.addToMap(o));
