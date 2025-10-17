@@ -1,8 +1,8 @@
 class Keyboard extends movableObject {
-    leftPressed = false;
-    rightPressed = false;
-    upPressed = false;
-    downPressed = false;
+    LEFT = false;
+    RIGHT = false;
+    UP = false;
+    DOWN = false;
     SPACE = false;
     height = 100;
     width = 165;

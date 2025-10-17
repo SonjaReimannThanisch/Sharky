@@ -13,23 +13,12 @@ function init() {
     
 }
 
-window.addEventListener("keypress", (event) => {
+window.addEventListener("keydown", (event) => {
     console.log(event);
     
 }); 
 
-document.addEventListener("keydown", keyDownHandler);
+// document.addEventListener("keydown", keyDownHandler);
 // document.addEventListener("keyup", keyUpHandler);
 
-function keyDownHandler(event) {
-  if (event.code === "ArrowRight") {
-    rightPressed = true;
-  } else if (event.code === "ArrowLeft") {
-    leftPressed = true;
-  }
-  if (event.code === "ArrowDown") {
-    downPressed = true;
-  } else if (event.code === "ArrowUp") {
-    upPressed = true;
-  }
-}
+
