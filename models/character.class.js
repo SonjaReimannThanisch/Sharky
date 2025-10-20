@@ -3,6 +3,8 @@ class character extends movableObject {
     height = 280;
     width = 200;
     y = 80;
+    speed = 10;
+
     IMAGES_MOVE = [
         'img/1.Sharkie/1.IDLE/1.png',
         'img/1.Sharkie/1.IDLE/2.png', 
@@ -34,16 +36,31 @@ class character extends movableObject {
     }
 
     animate(){
+
+
+        setInterval(() => {
+            if(this.world.keyboard.RIGHT) {
+                this.x += this.speed;
+                this.otherDirection = false;
+            }
+
+            if(this.world.keyboard.LEFT) {
+                this.x -= this.speed;
+                this.otherDirection = true;
+            }
+            this.world.camera_x = -this.x;
+        }, 1000 / 60);
+
         setInterval(() => {
 
-            if(this.world.keyboard.RIGHT) {
-
+            if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            
                 let i = this.currentImage % this.IMAGES_MOVE.length; // Let i = 5 % 6; 0, rest 5
                 let path = this.IMAGES_MOVE[i];
                 this.img = this.imageCache[path];
                 this.currentImage++;
             }
-        }, 200);
+        }, 50);
     }
 
     jump() {

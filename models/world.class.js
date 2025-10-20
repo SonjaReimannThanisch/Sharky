@@ -7,6 +7,7 @@ class world {
     canvas;
     ctx;
     keyboard;
+    camera_x = 0;
 
     constructor(canvas, keyboard) {
         this.canvas = canvas;
@@ -45,6 +46,8 @@ class world {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        this.ctx.translate(this.camera_x, 0);
+
         this.addObjectsToMap(this.backgrounds);
         this.ctx.save();
         this.ctx.globalAlpha = 0.25;
@@ -56,10 +59,9 @@ class world {
         this.addToMap(this.mainCharacter);
         this.addToMap(this.keyboard);
 
+        this.ctx.translate(-this.camera_x, 0);
 
         requestAnimationFrame(() => this.draw());
-
-
 
     }
 
@@ -71,7 +73,32 @@ class world {
         objects.forEach(o => this.addToMap(o));
     }
 
+
+//     addToMap(mo) {
+//     if (mo.otherDirection) {
+//         this.ctx.save();
+//         this.ctx.translate(mo.x + mo.width, 0);
+//         this.ctx.scale(-1, 1);
+//         this.ctx.drawImage(mo.img, 0, mo.y, mo.width, mo.height);
+//         this.ctx.restore();
+//     } else {
+//         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+//     }
+//     }
+// }
+
+
     addToMap(mo) {
+        if(mo.otherDirection) {
+            this.ctx.save();
+            this.ctx.translate(mo.width, 0);
+            this.ctx.scale(-1, 1);
+            mo.x = mo.x * -1;
+        }
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+        if(mo.otherDirection) {
+            mo.x = mo.x * -1;
+            this.ctx.restore();
+        }
     }
 }

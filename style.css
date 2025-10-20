@@ -9,13 +9,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(95.2deg, rgb(173, 252, 234) 26.8%, rgb(192, 229, 246) 64%);
+    background: linear-gradient(45deg, hsla(247, 46%, 47%, 1) 0%, hsla(198, 58%, 51%, 1) 50%);
 }
 
 canvas {
     width: 75vw;
     height: 75vh;
-    background-color: #63b5c780;
+    background-color: #544ce1ab;
     display: block;
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
