@@ -31,43 +31,41 @@ class world {
         ];
 
 
-        // let layerWidth = 720;
-        // let worldLength = 12000;
-        // let layerCount = Math.ceil(worldLength / (tileWidth * 2));
 
-        // let layerBases = [
+        // this.backgrounds = [
         //     new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 0),
-        //     new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', 0),
+        //     new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', 720),
+        //     new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 1440),
 
         //     new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 0),
-        //     new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D2.png', 0),
+        //     new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D2.png', 720),
+        //     new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 1440),
 
         //     new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 0),
-        //     new BackgroundObject('img/3. Background/Layers/2. Floor/D2.png', 0),
-        // ]
+        //     new BackgroundObject('img/3. Background/Layers/2. Floor/D2.png', 720),
+        //     new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 1440),
+        // ];
 
-        this.backgrounds = [
-            new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 0),
-            new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', 720),
-            new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 1440),
+        this.backgrounds = [];
 
-            new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 0),
-            new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D2.png', 720),
-            new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 1440),
+        let tileWidth = 720;
+        let pairCount = 120;
 
-            new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 0),
-            new BackgroundObject('img/3. Background/Layers/2. Floor/D2.png', 720),
-            new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 1440),
-        ];
+        for (let i = 0; i < pairCount; i++) {
+        let x1 = i * tileWidth * 2;
+        let x2 = x1 + tileWidth;
 
-        // layerBases.forEach(base => {
-        //     Array.from({ length: layerCount }).forEach((_, i) => {
-        //         const x1 = i * layerWidth * 2;
-        //         const x2 = x1 + layerWidth;
-        //         this.backgrounds.push(new BackgroundObject(`${base}1.png`, x1));
-        //         this.backgrounds.push(new BackgroundObject(`${base}2.png`, x2));
-        //     });
-        // });
+        this.backgrounds.push(new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', x1));
+        this.backgrounds.push(new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', x2));
+
+        this.backgrounds.push(new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', x1));
+        this.backgrounds.push(new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D2.png', x2));
+
+        this.backgrounds.push(new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', x1));
+        this.backgrounds.push(new BackgroundObject('img/3. Background/Layers/2. Floor/D2.png', x2));
+        }
+
+
 
         this.keyboard  = keyboard;
         this.setWorld();
