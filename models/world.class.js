@@ -30,8 +30,6 @@ class world {
             new Light(canvas.width, canvas.height)
         ];
 
-
-
         // this.backgrounds = [
         //     new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 0),
         //     new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', 720),
@@ -49,7 +47,9 @@ class world {
         this.backgrounds = [];
 
         let tileWidth = 720;
-        let pairCount = 120;
+        let pairCount = Math.ceil(this.canvas.width / (tileWidth * 2)) + 10;
+
+
 
         for (let i = 0; i < pairCount; i++) {
         let x1 = i * tileWidth * 2;
