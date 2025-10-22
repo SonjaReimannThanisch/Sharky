@@ -22,20 +22,52 @@ class world {
             new pufferfisch()
         ];
 
-        this.waves = [
-            new Wave(canvas.width, canvas.height)
-        ];
+        // this.waves = [
+        //     new Wave(canvas.width, canvas.height)
+        // ];
 
         this.lights = [
             new Light(canvas.width, canvas.height)
         ];
 
 
+        // let layerWidth = 720;
+        // let worldLength = 12000;
+        // let layerCount = Math.ceil(worldLength / (tileWidth * 2));
+
+        // let layerBases = [
+        //     new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 0),
+        //     new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', 0),
+
+        //     new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 0),
+        //     new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D2.png', 0),
+
+        //     new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 0),
+        //     new BackgroundObject('img/3. Background/Layers/2. Floor/D2.png', 0),
+        // ]
+
         this.backgrounds = [
-            new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', canvas.width, canvas.height),
-            new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', canvas.width, canvas.height),
-            new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png',  canvas.width, canvas.height),
+            new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 0),
+            new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', 720),
+            new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 1440),
+
+            new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 0),
+            new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D2.png', 720),
+            new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 1440),
+
+            new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 0),
+            new BackgroundObject('img/3. Background/Layers/2. Floor/D2.png', 720),
+            new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 1440),
         ];
+
+        // layerBases.forEach(base => {
+        //     Array.from({ length: layerCount }).forEach((_, i) => {
+        //         const x1 = i * layerWidth * 2;
+        //         const x2 = x1 + layerWidth;
+        //         this.backgrounds.push(new BackgroundObject(`${base}1.png`, x1));
+        //         this.backgrounds.push(new BackgroundObject(`${base}2.png`, x2));
+        //     });
+        // });
 
         this.keyboard  = keyboard;
         this.setWorld();
@@ -51,7 +83,7 @@ class world {
         this.addObjectsToMap(this.backgrounds);
         this.ctx.save();
         this.ctx.globalAlpha = 0.25;
-        this.addObjectsToMap(this.waves);
+        // this.addObjectsToMap(this.waves);
         this.ctx.restore();
         this.addObjectsToMap(this.lights);
         this.addObjectsToMap(this.enemies);
