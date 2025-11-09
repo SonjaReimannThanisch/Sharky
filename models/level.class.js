@@ -1,3 +1,4 @@
 class level {
-    
+    enemies;
+    lights;
 }
