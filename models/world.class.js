@@ -1,9 +1,5 @@
 class world {
     mainCharacter;
-    enemies;
-    waves;
-    lights;
-    background;
     canvas;
     ctx;
     keyboard;
@@ -16,33 +12,13 @@ class world {
         this.mainCharacter = new character();
         this.keyboard = new Keyboard(canvas.width, canvas.height);
 
-        this.enemies = [
-            new pufferfisch(),
-            new pufferfisch(),
-            new pufferfisch()
-        ];
+        this.enemies = level1.enemies;
 
-        // this.waves = [
-        //     new Wave(canvas.width, canvas.height)
-        // ];
+        // this.waves = ;
 
-        this.lights = [
-            new Light(canvas.width, canvas.height)
-        ];
+        this.lights = level1.lights;
 
-        // this.backgrounds = [
-        //     new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 0),
-        //     new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', 720),
-        //     new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 1440),
-
-        //     new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 0),
-        //     new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D2.png', 720),
-        //     new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 1440),
-
-        //     new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 0),
-        //     new BackgroundObject('img/3. Background/Layers/2. Floor/D2.png', 720),
-        //     new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 1440),
-        // ];
+        // this.backgrounds = level1.background;
 
         this.backgrounds = [];
 

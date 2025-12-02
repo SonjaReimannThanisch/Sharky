@@ -1,6 +1,14 @@
-class level {
+class Level {
     enemies;
+    // waves;
     lights;
-}
+    background;
 
-//Kommentar 1 huete 
+    constructor(enemies, lights, background){
+        this.enemies = enemies;
+        this.lights = lights;
+        this.background  = background;
+    }
+} 
+
+//Kommentar 1 heute 
