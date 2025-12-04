@@ -6,7 +6,7 @@ const level1 = new Level(
     ],
 
     [
-        new Light(canvas.width, canvas.height)
+        new Light()
     ],
 
     [
@@ -23,10 +23,8 @@ const level1 = new Level(
         new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 1440),
     ],
 
-    // [
-    //     new Wave(canvas.width, canvas.height)
-    // ]
+
     
 );
 
-//Koeemtar
+//Kommentar
