@@ -51,10 +51,7 @@ class character extends movableObject {
 
         setInterval(() => {
             if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                let i = this.currentImage % this.IMAGES_MOVE.length; // Let i = 5 % 6; 0, rest 5
-                let path = this.IMAGES_MOVE[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(this.IMAGES_MOVE);
             }
         }, 50);
     }

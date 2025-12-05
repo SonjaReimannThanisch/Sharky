@@ -46,13 +46,12 @@ class movableObject {
 
     }
 
-
-    // moveRight() {
-    //     setInterval(() => {
-    //         this.x -= this.speed;
-    //     }, 1000 / 60);
-        
-    // }
+    playAnimation(images) {
+        let i = this.currentImage % this.IMAGES_MOVE.length; // Let i = 5 % 6; 0, rest 5
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
 
     moveLeft() {
         setInterval(() => {

@@ -26,7 +26,6 @@ class world {
         this.addObjectsToMap(this.level.background);
         this.ctx.save();
         this.ctx.globalAlpha = 0.25;
-        // this.addObjectsToMap(this.waves);
         this.ctx.restore();
         this.addObjectsToMap(this.level.lights);
         this.addObjectsToMap(this.level.enemies);
