@@ -1,4 +1,4 @@
-const messages = {
+let messages = {
   "-whistle": " 'Vergiss nicht, warum du dieses Projekt liebst.'",
   "-says": " 'Eine Sache fertig ist besser als zehn angefangen.'",
   "-reminds": "Reminder: 'Atmen. Trinken. Pause.'",
@@ -6,7 +6,7 @@ const messages = {
   "-motivates": "You can Do it: 'Der erste Commit ist der schwerste.'"
 };
 
-const arg = process.argv[2];
+let arg = process.argv[2];
 
 const hour = new Date().getHours();
 let greeting = "Guten Tag";
