@@ -60,3 +60,5 @@ class character extends movableObject {
         
     }
 }
+
+// Kommentar heute damit ich gearbeitet habe 
