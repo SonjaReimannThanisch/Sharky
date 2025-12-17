@@ -21,7 +21,7 @@ class movableObject {
     }
 
     isAboveGround() {
-        return this.y < 80
+        return this.y < 110
     }
 
     loadImage(path) {

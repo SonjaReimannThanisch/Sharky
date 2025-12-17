@@ -1,9 +1,9 @@
 let messages = {
-  "-whistle": " 'Vergiss nicht, warum du dieses Projekt liebst.'",
-  "-says": " 'Eine Sache fertig ist besser als zehn angefangen.'",
-  "-reminds": "Reminder: 'Atmen. Trinken. Pause.'",
-  "-request": "Request: 'Was ist dein heutiges Highlight?'",
-  "-motivates": "You can Do it: 'Der erste Commit ist der schwerste.'"
+  "-whistle": " 'Vergiss nicht, warum du dieses Projekt liebst. -E'",
+  "-says": " 'Eine Sache fertig ist besser als zehn angefangen. -E'",
+  "-reminds": "Reminder: 'Atmen. Trinken. Pause. -E'",
+  "-request": "Request: 'Was ist dein heutiges Highlight? -E'",
+  "-motivates": "You can Do it: 'Der erste Commit ist der schwerste. -E'"
 };
 
 let arg = process.argv[2];

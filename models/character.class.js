@@ -24,13 +24,21 @@ class character extends movableObject {
         'img/1.Sharkie/1.IDLE/16.png',
         'img/1.Sharkie/1.IDLE/17.png',
         'img/1.Sharkie/1.IDLE/18.png'
-    ]; 
+    ];
+
+    IMAGES_SWIN = [
+        'img/1.Sharkie/3.Swim/2.png',
+        'img/1.Sharkie/3.Swim/3.png',
+        'img/1.Sharkie/3.Swim/5.png',
+        'img/1.Sharkie/3.Swim/6.png'
+    ];
 
     world;
 
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_MOVE);
+        this.loadImages(this.IMAGES_SWIN);
         this.applyGravity();
         // this.animate();
     }
@@ -50,8 +58,13 @@ class character extends movableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.playAnimation(this.IMAGES_MOVE);
+            if(this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_SWIN);
+            } else {
+                
+                if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    this.playAnimation(this.IMAGES_MOVE);
+                }
             }
         }, 50);
     }
@@ -60,5 +73,3 @@ class character extends movableObject {
         
     }
 }
-
-// Kommentar heute damit ich gearbeitet habe 
