@@ -39,7 +39,7 @@ class character extends movableObject {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_MOVE);
         this.loadImages(this.IMAGES_SWIN);
-        this.applyGravity();
+        // this.applyGravity();
         // this.animate();
     }
 
@@ -53,14 +53,11 @@ class character extends movableObject {
             if(this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
-            }
+            } 
 
-            // console.log(this.speedY, this.speedX);
-            
-
-            if(this.world.keyboardSprite.UP) {
-                this.speedY = 200;
-            }
+            // if(this.world.keyboardSprite.UP) {
+            //     this.speedY = 200;
+            // }
 
             this.world.camera_x = -this.x;
         }, 1000 / 60);

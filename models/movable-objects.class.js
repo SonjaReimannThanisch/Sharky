@@ -8,20 +8,20 @@ class movableObject {
     currentImage = 0;
     speed = 0.15;
     otherDirection = false;
-    speedY = 0;
-    accerleration = -2.5;
+    // speedY = 0;
+    // accerleration = -2.5;
 
-    applyGravity(){
-        setInterval(() => {
-            if(this.isAboveGround()) {
-            this.y += this.speedY;
-            this.speedY -= this.accerleration;
-            }
-        }, 1000 / 25);
-    }
+    // applyGravity(){
+    //     setInterval(() => {
+    //         if(this.isAboveGround() || this.speedY > 0) {
+    //         this.y += this.speedY;
+    //         this.speedY -= this.accerleration;
+    //         }
+    //     }, 1000 / 25);
+    // }
 
     isAboveGround() {
-        return this.y < 110
+        return this.y < 80
     }
 
     loadImage(path) {
