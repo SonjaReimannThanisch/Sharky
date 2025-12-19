@@ -10,8 +10,8 @@ class world {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
 
-        this.keyboard = new Keyboard(canvas.width, canvas.height);
-        this.keyboard  = keyboard;
+        this.keyboard = keyboard;
+        this.keyboardSprite = new Keyboard(canvas.width, canvas.height);
 
         this.setWorld();
         this.mainCharacter.animate();
@@ -31,7 +31,7 @@ class world {
         this.addObjectsToMap(this.level.enemies);
 
         this.addToMap(this.mainCharacter);
-        this.addToMap(this.keyboard);
+        this.addToMap(this.keyboardSprite);
 
         this.ctx.translate(-this.camera_x, 0);
 
