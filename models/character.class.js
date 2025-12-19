@@ -55,9 +55,6 @@ class character extends movableObject {
                 this.otherDirection = true;
             } 
 
-            // if(this.world.keyboardSprite.UP) {
-            //     this.speedY = 200;
-            // }
 
             this.world.camera_x = -this.x;
         }, 1000 / 60);
@@ -74,7 +71,4 @@ class character extends movableObject {
         }, 50);
     }
 
-    jump() {
-        
-    }
 }
