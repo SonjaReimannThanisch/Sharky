@@ -54,6 +54,14 @@ class character extends movableObject {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
+
+            // console.log(this.speedY, this.speedX);
+            
+
+            if(this.world.keyboardSprite.UP) {
+                this.speedY = 200;
+            }
+
             this.world.camera_x = -this.x;
         }, 1000 / 60);
 
