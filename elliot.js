@@ -6,7 +6,13 @@ let messages = {
   "-motivates": "You can Do it: 'Der erste Commit ist der schwerste. -E'"
 };
 
-let arg = process.argv[2];
+console.log("BIN VOR PROBLEM");
+
+// let arg = process.argv[2];
+let arg = null;
+
+console.log("BIN NACH PROBLEM");
+
 
 const hour = new Date().getHours();
 let greeting = "Guten Tag";
@@ -27,7 +33,8 @@ Elliot wartet auf ein Keyword:
   -request
   -motivates
 `);
-  process.exit(0);
+  // BROWSER MODE
+  // process.exit(0);
 }
 
 console.log(`\n✨ ${greeting}! ✨`);
