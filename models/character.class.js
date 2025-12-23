@@ -4,11 +4,10 @@ class character extends movableObject {
     width = 200;
     y = 80;
     speed = 10;
-    speedY = 8;
-    minY = 0;
+    minY = -130;
     maxY;
 
-    IMAGES_MOVE = [
+    IMAGES_IDLE = [
         'img/1.Sharkie/1.IDLE/1.png',
         'img/1.Sharkie/1.IDLE/2.png', 
         'img/1.Sharkie/1.IDLE/3.png', 
@@ -40,44 +39,49 @@ class character extends movableObject {
 
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
-        this.loadImages(this.IMAGES_MOVE);
+        this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SWIN);
-        this.animate();
+        // this.animate();
     }
 
-    animate(){
+    animate() {
+        this.maxY = this.world.canvas.height - this.height;
 
         setInterval(() => {
-            if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
-            }            
-            if(this.world.keyboard.LEFT && this.x > 0) {
+            }
+            if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
 
-            if (this.world.keyboard.UP && this.y > minY) {
-                this.y -= this.speedY;
+            if (this.world.keyboard.UP && this.y > this.minY) {
+                 this.y = Math.max(this.minY, this.y - this.speed);
+                // this.y -= this.speed;
+                console.log("AFTER", this.y);
             }
-            if (this.world.keyboard.DOWN && this.y < maxY) {
-                this.y += this.speedY;
+            if (this.world.keyboard.DOWN && this.y < this.maxY) {
+                this.y += this.speed;
             }
-
 
             this.world.camera_x = -this.x;
         }, 1000 / 60);
 
         setInterval(() => {
-            if(this.isAboveGround()) {
+            if (
+                this.world.keyboard.RIGHT ||
+                this.world.keyboard.LEFT  ||
+                this.world.keyboard.UP    ||
+                this.world.keyboard.DOWN
+            ) {
                 this.playAnimation(this.IMAGES_SWIN);
             } else {
-                
-                if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_MOVE);
-                }
+                this.playAnimation(this.IMAGES_IDLE);
             }
-        }, 50);
-    }
+        }, 200);
 
+
+    }
 }
