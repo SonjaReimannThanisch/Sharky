@@ -4,6 +4,9 @@ class character extends movableObject {
     width = 200;
     y = 80;
     speed = 10;
+    speedY = 8;
+    minY = 0;
+    maxY;
 
     IMAGES_MOVE = [
         'img/1.Sharkie/1.IDLE/1.png',
@@ -39,8 +42,7 @@ class character extends movableObject {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_MOVE);
         this.loadImages(this.IMAGES_SWIN);
-        // this.applyGravity();
-        // this.animate();
+        this.animate();
     }
 
     animate(){
@@ -53,7 +55,14 @@ class character extends movableObject {
             if(this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
-            } 
+            }
+
+            if (this.world.keyboard.UP && this.y > minY) {
+                this.y -= this.speedY;
+            }
+            if (this.world.keyboard.DOWN && this.y < maxY) {
+                this.y += this.speedY;
+            }
 
 
             this.world.camera_x = -this.x;

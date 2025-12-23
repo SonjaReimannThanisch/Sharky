@@ -8,7 +8,11 @@ class world {
 
     constructor(canvas, keyboard) {
         this.canvas = canvas;
-        this.ctx = canvas.getContext('2d');
+        this.ctx = canvas.get
+        
+        
+        
+        Context('2d');
 
         this.keyboard = keyboard;
         this.keyboardSprite = new Keyboard(canvas.width, canvas.height);
