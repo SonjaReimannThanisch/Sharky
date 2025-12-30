@@ -59,7 +59,6 @@ class character extends movableObject {
 
             if (this.world.keyboard.UP && this.y > this.minY) {
                  this.y = Math.max(this.minY, this.y - this.speed);
-                // this.y -= this.speed;
                 console.log("AFTER", this.y);
             }
             if (this.world.keyboard.DOWN && this.y < this.maxY) {
