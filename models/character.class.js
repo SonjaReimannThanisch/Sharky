@@ -37,6 +37,13 @@ class character extends movableObject {
 
     world;
 
+        // offset = {
+    //     top: 120,
+    //     left: 30,
+    //     right: 40,
+    //     bottom: 30,
+    // }
+
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);
