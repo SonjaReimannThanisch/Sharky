@@ -19,6 +19,29 @@ class world {
         this.draw();
     }
 
+    setWorld() {
+        this.mainCharacter.world = this;
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if(this.character.isColliding(enemy)) {
+                    console.log('Collision with Character', enemy);
+                    this.character.energy -= 5;
+                    console.log('Collision with Character, energy', this.character.energy);
+                }
+            });
+        }, 1000);
+    }
+
+    // offset = {
+    //     top: 0,
+    //     left: 0,
+    //     right: 0,
+    //     bottom:0,
+    // }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -40,9 +63,6 @@ class world {
 
     }
 
-    setWorld() {
-        this.mainCharacter.world = this;
-    }
 
     addObjectsToMap(objects) {
         objects.forEach(o => this.addToMap(o));
@@ -58,12 +78,6 @@ class world {
         if(mo.otherDirection) {
             this.flipImageBack(mo);
         }
-
-        // if(character.x + character.width > pufferfisch.x &&
-        //     character.y + character.height > pufferfisch.y &&
-        //     character.x < pufferfisch.x &&
-        //     character.y < pufferfisch.y + pufferfisch.height
-        // )
     }
 
     flipImage(mo) {
@@ -78,10 +92,4 @@ class world {
         this.ctx.restore();
     }
 
-    isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height
-    }
 }
