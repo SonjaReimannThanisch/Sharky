@@ -8,10 +8,7 @@ class movableObject {
     currentImage = 0;
     speed = 0.15;
     otherDirection = false;
-
-    // isAboveGround() {
-    //     return this.y < 80
-    // }
+    energy = 100;
 
     loadImage(path) {
         this.img = new Image();
@@ -33,6 +30,14 @@ class movableObject {
         }
     }
 
+    //charcter.isColliding(pufferfish)
+    isColliding(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
+    }
+
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
@@ -41,13 +46,6 @@ class movableObject {
         });
 
     }
-
-    // playAnimation(images) {
-    //     let i = this.currentImage % this.IMAGES_MOVE.length;
-    //     let path = images[i];
-    //     this.img = this.imageCache[path];
-    //     this.currentImage++;
-    // }
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
@@ -63,6 +61,3 @@ class movableObject {
         }, 1000 / 60);
     }
 }
-
-
-
