@@ -17,6 +17,7 @@ class world {
         this.setWorld();
         this.mainCharacter.animate();
         this.draw();
+        this.checkCollisions();
     }
 
     setWorld() {
@@ -26,10 +27,10 @@ class world {
     checkCollisions() {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
-                if(this.character.isColliding(enemy)) {
+                if(this.mainCharacter.isColliding(enemy)) {
                     console.log('Collision with Character', enemy);
-                    this.character.energy -= 5;
-                    console.log('Collision with Character, energy', this.character.energy);
+                    this.mainCharacter.energy -= 5;
+                    console.log('Collision with Character, energy', this.mainCharacter.energy);
                 }
             });
         }, 1000);
