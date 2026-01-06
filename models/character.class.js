@@ -35,6 +35,21 @@ class character extends movableObject {
         'img/1.Sharkie/3.Swim/6.png'
     ];
 
+    IMAGES_POISENED = [
+        'img/1.Sharkie/6.dead/1.Poisoned/1.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/2.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/3.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/4.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/5.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/6.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/7.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/8.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/9.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/10.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/11.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/12.png',
+    ];
+
     world;
 
         // offset = {
@@ -48,7 +63,7 @@ class character extends movableObject {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SWIN);
-        // this.animate();
+        this.loadImages(this.IMAGES_POISENED);
     }
 
     animate() {
@@ -75,7 +90,10 @@ class character extends movableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if (
+
+            if(this.isDead()) {
+                this.playAnimation(this.IMAGES_POISENED);
+            } else if (
                 this.world.keyboard.RIGHT ||
                 this.world.keyboard.LEFT  ||
                 this.world.keyboard.UP    ||
