@@ -50,6 +50,13 @@ class character extends movableObject {
         'img/1.Sharkie/6.dead/1.Poisoned/12.png',
     ];
 
+    IMAGES_POIHURT = [
+        'img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
+    ]
+
     world;
 
         // offset = {
@@ -64,6 +71,7 @@ class character extends movableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SWIN);
         this.loadImages(this.IMAGES_POISENED);
+        this.loadImages(this.IMAGES_POIHURT);
     }
 
     animate() {
@@ -93,6 +101,8 @@ class character extends movableObject {
 
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_POISENED);
+            } else if(this.isHurt()) {
+                this.playAnimation(this.IMAGES_POIHURT);
             } else if (
                 this.world.keyboard.RIGHT ||
                 this.world.keyboard.LEFT  ||
