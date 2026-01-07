@@ -1,27 +1,10 @@
-class movableObject {
-    x = 10;
-    y = 280;
-    width = 150;
-    height = 150;
-    img;
-    imageCache = {};
-    currentImage = 0;
+class movableObject extends drawableObject {
     speed = 0.15;
     otherDirection = false;
     energy = 100;
+    lastHit = 0;
 
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
-
-    }
-
-    draw(ctx) {
-        if (!this.img) return;
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-
+    
     drawFrame(ctx) {
         if(this instanceof character || this instanceof pufferfisch || this instanceof Endboss) {
             ctx.beginPath();
@@ -44,27 +27,21 @@ class movableObject {
         this.energy -= 20;
         if (this.energy <= 0) {
             this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
         }
+    }
+
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHit;
+        timePassed = timePassed / 1000;
+        // console.log(timePassed);
+        
+        return timePassed < 1.5;
     }
 
     isDead() {
         return this.energy === 0;
-    }
-
-    loadImages(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-
-    }
-
-    playAnimation(images) {
-        let i = this.currentImage % images.length;
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
     }
 
 
