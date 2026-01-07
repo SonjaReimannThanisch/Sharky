@@ -5,6 +5,7 @@ class world {
     ctx;
     keyboard;
     camera_x = 0;
+    statusBar = new statusBar();
 
     constructor(canvas, keyboard) {
         this.canvas = canvas;
@@ -30,7 +31,7 @@ class world {
                 if(this.mainCharacter.isColliding(enemy)) {
                     console.log('Collision with Character', enemy);
                     this.mainCharacter.hit();
-                    console.log('Collision with Character, energy', this.mainCharacter.energy);
+                    this.statusBar.setPercentage(this.percentage.energy);
                 }
             });
         }, 1000);
@@ -47,13 +48,17 @@ class world {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.background);
         this.ctx.save();
         this.ctx.globalAlpha = 0.25;
         this.ctx.restore();
         this.addObjectsToMap(this.level.lights);
         this.addObjectsToMap(this.level.enemies);
+
+        this.ctx.translate(-this.camera_x, 0);
+        //--------space for fixed object---------
+        this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.mainCharacter);
         this.addToMap(this.keyboardSprite);
@@ -74,8 +79,9 @@ class world {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
-
+        if( mo.drawFrame) {
+            (this.ctx);
+        }
         if(mo.otherDirection) {
             this.flipImageBack(mo);
         }
