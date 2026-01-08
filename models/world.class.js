@@ -6,6 +6,8 @@ class world {
     keyboard;
     camera_x = 0;
     statusBar = new statusBar();
+    attacks = [];
+
 
     constructor(canvas, keyboard) {
         this.canvas = canvas;
@@ -29,13 +31,24 @@ class world {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if(this.mainCharacter.isColliding(enemy)) {
-                    console.log('Collision with Character', enemy);
                     this.mainCharacter.hit();
                     this.statusBar.setPercentage(this.mainCharacter.energy);
                 }
             });
         }, 1000);
     }
+
+    checkAttackCollisions() {
+        this.attacks.forEach((attack) => {
+            this.level.enemies.forEach((enemy) => {
+                if (!attack.hasHit && attack.isColliding(enemy)) {
+                    enemy.hit();
+                    attack.hasHit = true;
+                }
+            });
+        });
+    }
+
 
     // offset = {
     //     top: 0,
@@ -53,10 +66,13 @@ class world {
         this.ctx.globalAlpha = 0.25;
         this.ctx.restore();
         this.addObjectsToMap(this.level.lights);
+        this.attacks = this.attacks.filter(a => !a.isExpired());
+        this.addObjectsToMap(this.attacks);
+
         this.addObjectsToMap(this.level.enemies);
 
         this.ctx.translate(-this.camera_x, 0);
-        //--------space for fixed object---------
+        //--------space for fixed objects---------
         this.addToMap(this.statusBar);
         this.ctx.translate(this.camera_x, 0);
 
@@ -66,6 +82,7 @@ class world {
         this.ctx.translate(-this.camera_x, 0);
 
         requestAnimationFrame(() => this.draw());
+        this.checkAttackCollisions();
 
     }
 
