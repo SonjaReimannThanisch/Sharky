@@ -31,7 +31,7 @@ class world {
                 if(this.mainCharacter.isColliding(enemy)) {
                     console.log('Collision with Character', enemy);
                     this.mainCharacter.hit();
-                    this.statusBar.setPercentage(this.percentage.energy);
+                    this.statusBar.setPercentage(this.mainCharacter.energy);
                 }
             });
         }, 1000);
@@ -79,8 +79,8 @@ class world {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        if( mo.drawFrame) {
-            (this.ctx);
+        if(mo.drawFrame) {
+            mo.drawFrame(this.ctx);
         }
         if(mo.otherDirection) {
             this.flipImageBack(mo);
