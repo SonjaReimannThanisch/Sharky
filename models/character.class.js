@@ -6,6 +6,9 @@ class character extends movableObject {
     speed = 10;
     minY = -130;
     maxY;
+    lastAttack = 0;
+    attackCooldown = 300; // ms
+
 
     IMAGES_IDLE = [
         'img/1.Sharkie/1.IDLE/1.png',
@@ -93,6 +96,13 @@ class character extends movableObject {
             if (this.world.keyboard.DOWN && this.y < this.maxY) {
                 this.y += this.speed;
             }
+
+            if (this.world.keyboard.D && Date.now() - this.lastAttack > this.attackCooldown) {
+                this.lastAttack = Date.now();
+                this.world.attacks.push(new FinSlapAttack(this));
+                this.world.keyboard.D = false;
+            }
+
 
             this.world.camera_x = -this.x;
         }, 1000 / 60);
