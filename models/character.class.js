@@ -97,11 +97,11 @@ class character extends movableObject {
                 this.y += this.speed;
             }
 
-            if (this.world.keyboard.D && Date.now() - this.lastAttack > this.attackCooldown) {
-                this.lastAttack = Date.now();
+            if (this.world.keyboard.D) {
                 this.world.attacks.push(new FinSlapAttack(this));
-                this.world.keyboard.D = false;
+                this.world.keyboard.D = false; // verhindert Dauerfeuer, solange Taste gehalten wird
             }
+
 
 
             this.world.camera_x = -this.x;
