@@ -7,8 +7,7 @@ class character extends movableObject {
     minY = -130;
     maxY;
     lastAttack = 0;
-    attackCooldown = 300; // ms
-
+    attackCooldown = 400;
 
     IMAGES_IDLE = [
         'img/1.Sharkie/1.IDLE/1.png',
@@ -97,9 +96,9 @@ class character extends movableObject {
                 this.y += this.speed;
             }
 
-            if (this.world.keyboard.D) {
+            if (this.world.keyboard.ATTACK) {
                 this.world.attacks.push(new FinSlapAttack(this));
-                this.world.keyboard.D = false; // verhindert Dauerfeuer, solange Taste gehalten wird
+                this.world.keyboard.ATTACK = false;
             }
 
 
@@ -108,6 +107,22 @@ class character extends movableObject {
         }, 1000 / 60);
 
         setInterval(() => {
+
+            let now = Date.now();
+
+            // FIN SLAP → D
+            if (this.world.keyboard.D && now - this.lastAttack > this.attackCooldown) {
+                this.world.attacks.push(new FinSlapAttack(this));
+                this.lastAttack = now;
+                return;
+            }
+
+            // BUBBLE → A
+            if (this.world.keyboard.A && now - this.lastAttack > this.attackCooldown) {
+                this.world.attacks.push(new BubbleTrapAttack(this));
+                this.lastAttack = now;
+                return;
+            }
 
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_POISENED);
