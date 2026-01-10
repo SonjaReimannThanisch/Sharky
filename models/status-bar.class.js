@@ -1,4 +1,6 @@
 class statusBar extends drawableObject {
+    percentage = 100;
+    images = [];
 
     IMAGES_STATUS_LIFE = [
         'img/4.Marcadores/green/Life/0_copia.png',
@@ -36,45 +38,60 @@ class statusBar extends drawableObject {
     //     'img/4.Marcadores/green/poisoned bubbles/0_copia2.png',
     // ];
 
-    percentage = 100;
 
-    constructor() {
+
+    constructor(type = 'life') {
         super();
-        this.loadImages(this.IMAGES_STATUS_LIFE);
-        this.loadImages(this.IMAGES_STATUS_COINS);
-        this.loadImages(this.IMAGES_STATUS_POISON);
+        // this.loadImages(this.IMAGES_STATUS_LIFE);
+        // this.loadImages(this.IMAGES_STATUS_COINS);
+        // this.loadImages(this.IMAGES_STATUS_POISON);
+        // this.x = 40;
+        // this.y = 0;
+        // this.width = 180;
+        // this.height = 50;
+        // this.setPercentage(100);
+        // let pathLife = this.IMAGES_STATUS_LIFE[this.resolveImageIndex()];
+        // let pathCoins = this.IMAGES_STATUS_COINS[this.resolveImageIndex()];
+        // let pathPoison = this.IMAGES_STATUS_POISON[this.resolveImageIndex()];
+        // this.img = this.imageCache[pathLife, pathCoins, pathPoison];
+        this.images =
+            type === 'coins' ? this.IMAGES_STATUS_COINS :
+            type === 'poison' ? this.IMAGES_STATUS_POISON :
+            this.IMAGES_STATUS_LIFE;
+
+        this.loadImages(this.images);
+
         this.x = 40;
         this.y = 0;
         this.width = 180;
         this.height = 50;
+
         this.setPercentage(100);
-        let pathLife = this.IMAGES_STATUS_LIFE[this.resolveImageIndex()];
-        let pathCoins = this.IMAGES_STATUS_COINS[this.resolveImageIndex()];
-        let pathPoison = this.IMAGES_STATUS_POISON[this.resolveImageIndex()];
-        this.img = this.imageCache[pathLife, pathCoins, pathPoison];
     }
 
     setPercentage(percentage) {
         this.percentage = percentage;
-        let pathLife = this.IMAGES_STATUS_LIFE[this.resolveImageIndex()];
-        let pathCoins = this.IMAGES_STATUS_COINS[this.resolveImageIndex()];
-        let pathPoison = this.IMAGES_STATUS_POISON[this.resolveImageIndex()];
-        this.img = this.imageCache[pathLife, pathCoins];
+        let path = this.images[this.resolveImageIndex()];
+        this.img = this.imageCache[path];
     }
 
+
+
+    // setPercentage(percentage) {
+    //     this.percentage = percentage;
+    //     let pathLife = this.IMAGES_STATUS_LIFE[this.resolveImageIndex()];
+    //     let pathCoins = this.IMAGES_STATUS_COINS[this.resolveImageIndex()];
+    //     let pathPoison = this.IMAGES_STATUS_POISON[this.resolveImageIndex()];
+    //     this.img = this.imageCache[pathLife, pathCoins];
+    // }
+
     resolveImageIndex() {
-        if (this.percentage == 100) {
-            return 5;
-        } else if (this.percentage == 80) {
-            return 4;
-        } else if (this.percentage == 60) {
-            return 3;
-        } else if (this.percentage == 40) {
-            return 2;
-        } else if (this.percentage == 20) {
-            return 1;
-        } else {
-            return 0;
-        }
+    if (this.percentage >= 100) return 5;
+    if (this.percentage >= 80)  return 4;
+    if (this.percentage >= 60)  return 3;
+    if (this.percentage >= 40)  return 2;
+    if (this.percentage >= 20)  return 1;
+    return 0;
     }
+
 }

@@ -5,7 +5,9 @@ class world {
     ctx;
     keyboard;
     camera_x = 0;
-    statusBar = new statusBar();
+    statusLife;
+    statusCoins;
+    statusPoison;
     attacks = [];
 
 
@@ -16,6 +18,14 @@ class world {
 
         this.keyboard = keyboard;
         this.keyboardSprite = new Keyboard(canvas.width, canvas.height);
+        this.statusLife = new statusBar('life');
+        this.statusCoins = new statusBar('coins');
+        this.statusPoison = new statusBar('poison');
+
+        this.statusLife.y = 10;
+        this.statusCoins.y = 70;
+        this.statusPoison.y = 130;
+
 
         this.setWorld();
         this.mainCharacter.animate();
@@ -32,7 +42,7 @@ class world {
             this.level.enemies.forEach((enemy) => {
                 if(this.mainCharacter.isColliding(enemy)) {
                     this.mainCharacter.hit();
-                    this.statusBar.setPercentage(this.mainCharacter.energy);
+                    this.statusLife.setPercentage(this.mainCharacter.energy);
                 }
             });
         }, 1000);
@@ -73,7 +83,10 @@ class world {
 
         this.ctx.translate(-this.camera_x, 0);
         //--------space for fixed objects---------
-        this.addToMap(this.statusBar);
+        this.addToMap(this.statusLife);
+        this.addToMap(this.statusCoins);
+        this.addToMap(this.statusPoison);
+
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.mainCharacter);
