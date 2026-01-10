@@ -42,18 +42,6 @@ class statusBar extends drawableObject {
 
     constructor(type = 'life') {
         super();
-        // this.loadImages(this.IMAGES_STATUS_LIFE);
-        // this.loadImages(this.IMAGES_STATUS_COINS);
-        // this.loadImages(this.IMAGES_STATUS_POISON);
-        // this.x = 40;
-        // this.y = 0;
-        // this.width = 180;
-        // this.height = 50;
-        // this.setPercentage(100);
-        // let pathLife = this.IMAGES_STATUS_LIFE[this.resolveImageIndex()];
-        // let pathCoins = this.IMAGES_STATUS_COINS[this.resolveImageIndex()];
-        // let pathPoison = this.IMAGES_STATUS_POISON[this.resolveImageIndex()];
-        // this.img = this.imageCache[pathLife, pathCoins, pathPoison];
         this.images =
             type === 'coins' ? this.IMAGES_STATUS_COINS :
             type === 'poison' ? this.IMAGES_STATUS_POISON :
@@ -74,16 +62,6 @@ class statusBar extends drawableObject {
         let path = this.images[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
-
-
-
-    // setPercentage(percentage) {
-    //     this.percentage = percentage;
-    //     let pathLife = this.IMAGES_STATUS_LIFE[this.resolveImageIndex()];
-    //     let pathCoins = this.IMAGES_STATUS_COINS[this.resolveImageIndex()];
-    //     let pathPoison = this.IMAGES_STATUS_POISON[this.resolveImageIndex()];
-    //     this.img = this.imageCache[pathLife, pathCoins];
-    // }
 
     resolveImageIndex() {
     if (this.percentage >= 100) return 5;
