@@ -23,8 +23,8 @@ class world {
         this.statusPoison = new statusBar('poison');
 
         this.statusLife.y = 10;
-        this.statusCoins.y = 70;
-        this.statusPoison.y = 130;
+        this.statusCoins.y = 45;
+        this.statusPoison.y = 80;
 
 
         this.setWorld();
