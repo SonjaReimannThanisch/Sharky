@@ -38,7 +38,7 @@ class Endboss extends movableObject {
         'img/2.Enemy/3 Final Enemy/Attack/3.png',
         'img/2.Enemy/3 Final Enemy/Attack/4.png',
         'img/2.Enemy/3 Final Enemy/Attack/5.png',
-        'img/2.Enemy/3 Final Enemy/Attack/6.png',
+        'img/2.Enemy/3 Final Enemy/Attack/6.png'
     ]
 
     IMAGES_DEAD = [
@@ -46,7 +46,14 @@ class Endboss extends movableObject {
         'img/2.Enemy/3 Final Enemy/Dead/dead7.png',
         'img/2.Enemy/3 Final Enemy/Dead/dead8.png',
         'img/2.Enemy/3 Final Enemy/Dead/dead9.png',
-        'img/2.Enemy/3 Final Enemy/Dead/dead10.png',
+        'img/2.Enemy/3 Final Enemy/Dead/dead10.png'
+    ]
+
+    IMAGES_HURT = [
+        'img/2.Enemy/3 Final Enemy/Hurt/1.png',
+        'img/2.Enemy/3 Final Enemy/Hurt/2.png',
+        'img/2.Enemy/3 Final Enemy/Hurt/3.png',
+        'img/2.Enemy/3 Final Enemy/Hurt/4.png'
     ]
 
     constructor(x, y) {

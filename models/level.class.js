@@ -5,11 +5,10 @@ class Level {
     background;
     level_end_x =  1440;
 
-    constructor(enemies, lights, background){
+    constructor(enemies, coins, lights, background){
         this.enemies = enemies;
+        this.coins = coins;
         this.lights = lights;
         this.background  = background;
     }
 } 
-
-//Kommentar 1 heute 

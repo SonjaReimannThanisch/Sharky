@@ -22,9 +22,9 @@ class world {
         this.statusCoins = new statusBar('coins');
         this.statusPoison = new statusBar('poison');
 
-        this.statusLife.y = 10;
-        this.statusCoins.y = 45;
-        this.statusPoison.y = 80;
+        this.statusLife.y = 45;
+        this.statusCoins.y = 80;
+        this.statusPoison.y = 10;
 
 
         this.setWorld();
@@ -76,6 +76,8 @@ class world {
         this.ctx.globalAlpha = 0.25;
         this.ctx.restore();
         this.addObjectsToMap(this.level.lights);
+        this.addObjectsToMap(this.level.coins);
+
         this.attacks = this.attacks.filter(a => !a.isExpired());
         this.addObjectsToMap(this.attacks);
 

@@ -4,7 +4,7 @@ class Light extends movableObject {
     width = 250;
 
 
-    constructor(canvasWidth, canvasHeight) {
+    constructor() {
         super();
         this.loadImage('img/3. Background/Legacy/Layers/1. Light/1.png');
         this.x = 0;

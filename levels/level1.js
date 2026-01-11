@@ -1,13 +1,36 @@
 const level1 = new Level(
     [
-        new pufferfisch(),
-        new pufferfisch(),
-        new pufferfisch(),
+        new pufferfisch('pink'),
+        new pufferfisch('pink'),
+        new pufferfisch('pink'),
+        new pufferfisch('rose'),
+        new pufferfisch('rose'),
+        new pufferfisch('rose'),
+        new pufferfisch('green'),
+        new pufferfisch('green'),
+        new pufferfisch('green'),
+
+        new jellyfisch('lila'),
+        new jellyfisch('lila'),
+        new jellyfisch('lila'),
+        new jellyfisch('yellow'),
+        new jellyfisch('yellow'),
+        new jellyfisch('yellow'),
+
         new Endboss()
     ],
 
     [
         new Light()
+    ],
+
+    [
+        new coin(380, 320),
+        new coin(460, 280),
+        new coin(540, 260),
+        new coin(620, 280),
+        new coin(680, 280),
+        new coin(700, 320),
     ],
 
     [
@@ -26,6 +49,4 @@ const level1 = new Level(
 
 
     
-);
-
-//Kommentar
+)
