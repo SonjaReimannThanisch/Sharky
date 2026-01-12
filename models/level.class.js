@@ -3,7 +3,8 @@ class Level {
     // waves;
     lights;
     background;
-    level_end_x =  1440;
+    level_end_x = 720 * 20;
+
 
     constructor(enemies, coins, poison, lights, background){
         this.enemies = enemies;
