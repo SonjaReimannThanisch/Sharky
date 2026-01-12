@@ -60,25 +60,19 @@ class world {
     }
 
     updateBackground() {
-        const w = 720;
-
-        const groups = [
-            this.level.background.slice(0, 2), // Water (0,720) wenn du nur 2 nutzt
-            this.level.background.slice(2, 4), // Fondo
-            this.level.background.slice(4, 6), // Floor
+        let w = 720;
+        let groups = [
+            this.level.background.slice(0, 2),
+            this.level.background.slice(2, 4),
+            this.level.background.slice(4, 6),
         ];
-
-        const leftEdge = -this.camera_x;
-
+        let leftEdge = -this.camera_x;
         groups.forEach(g => {
             g.forEach(bg => {
-            if (bg.x + w < leftEdge) bg.x += w * g.length; // bei 2: +1440
+            if (bg.x + w < leftEdge) bg.x += w * g.length;
             });
         });
     }
-
-
-
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
