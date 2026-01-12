@@ -77,6 +77,7 @@ class world {
         this.ctx.restore();
         this.addObjectsToMap(this.level.lights);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.poison)
 
         this.attacks = this.attacks.filter(a => !a.isExpired());
         this.addObjectsToMap(this.attacks);

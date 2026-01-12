@@ -26,12 +26,17 @@ const level1 = new Level(
 
     [
         new coin(380, 320),
-        new coin(460, 280),
-        new coin(540, 260),
-        new coin(620, 280),
-        new coin(680, 280),
-        new coin(700, 320),
+        new coin(420, 260),
+        new coin(480, 220),
+        new coin(560, 220),
+        new coin(620, 260),
+        new coin(660, 320),
     ],
+
+    [
+        new poison(290, 370),
+    ],
+
 
     [
         new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 0),
