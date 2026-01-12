@@ -6,16 +6,21 @@ class movableObject extends drawableObject {
 
     
     drawFrame(ctx) {
-        if(this instanceof character || this instanceof pufferfisch || this instanceof Endboss) {
+        if(this instanceof character || this instanceof pufferfisch || this instanceof jellyfisch || this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
+            let offset = this.offset || { top: 0, left: 0, right: 0, bottom: 0 };
+            ctx.rect(
+            this.x + offset.left,
+            this.y + offset.top,
+            this.width - offset.left - offset.right,
+            this.height - offset.top - offset.bottom
+            );
             ctx.stroke();
         }
     }
 
-    //charcter.isColliding(pufferfish)
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&

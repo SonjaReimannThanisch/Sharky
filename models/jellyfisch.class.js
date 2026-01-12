@@ -17,6 +17,13 @@ class jellyfisch extends movableObject {
         'img/2.Enemy/2 Jelly fish/Regular damage/Yellow_4.png',
     ];
 
+    offset = {
+        top: 5,
+        left: 5,
+        right: 5,
+        bottom: 5,
+    }
+
     constructor(color = 'lila') {
         super()
         this.images = (color === 'yellow') ? this.IMAGES_MOVE_YELLOW : this.IMAGES_MOVE_LILA;
