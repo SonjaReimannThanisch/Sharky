@@ -25,6 +25,13 @@ class pufferfisch extends movableObject {
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png'
     ];
 
+    offset = {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 20,
+    }
+
 
     constructor(color = 'pink') {
         super()
