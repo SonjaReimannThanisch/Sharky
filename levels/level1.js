@@ -52,6 +52,13 @@ const level1 = new Level(
         // new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 1440),
     ],
 
+    [
+        new barrier('img/3. Background/Barrier/1.png', 900, 120, 500, 300),
+        new barrier('img/3. Background/Barrier/2.png', 1600, 260, 600, 250),
+        new barrier('img/3. Background/Barrier/3.png', 1900, 260, 600, 250),
+    ],
+
+
 
     
 )
