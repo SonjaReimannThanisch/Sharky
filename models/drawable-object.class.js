@@ -23,7 +23,6 @@ class drawableObject {
             img.src = path;
             this.imageCache[path] = img;
         });
-
     }
 
     playAnimation(images) {
