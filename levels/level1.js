@@ -25,16 +25,16 @@ const level1 = new Level(
     ],
 
     [
-        new coin(380, 320),
-        new coin(420, 260),
-        new coin(480, 220),
-        new coin(560, 220),
-        new coin(620, 260),
-        new coin(660, 320),
+        new coin(240, 320),
+        new coin(280, 260),
+        new coin(340, 220),
+        new coin(420, 220),
+        new coin(480, 260),
+        new coin(520, 320),
     ],
 
     [
-        new poison(290, 370),
+        new poison(290, 350),
     ],
 
 

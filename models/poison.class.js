@@ -1,6 +1,6 @@
 class poison extends drawableObject {
-    height = 80;
-    width = 80;
+    height = 100;
+    width = 60;
 
     IMAGES = [
         'img/4.Marcadores/Posión/Dark - Right.png',

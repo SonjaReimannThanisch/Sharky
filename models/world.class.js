@@ -59,17 +59,19 @@ class world {
         });
     }
 
+    updateBackground() {
+        this.level.background.forEach(bg => {
+            if (bg.x + bg.width < -this.camera_x) {
+                bg.x += bg.width * this.level.background.length;
+            }
+        });
+    }
 
-    // offset = {
-    //     top: 0,
-    //     left: 0,
-    //     right: 0,
-    //     bottom:0,
-    // }
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+        this.updateBackground();
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.background);
         this.ctx.save();
