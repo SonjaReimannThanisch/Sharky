@@ -98,8 +98,6 @@ class character extends movableObject {
                 this.world.attacks.push(new FinSlapAttack(this));
                 this.world.keyboard.ATTACK = false;
             }
-            this.lastX = this.x;
-            this.LastY = this.y;
             this.world.camera_x = -this.x;
         }, 1000 / 60);
 

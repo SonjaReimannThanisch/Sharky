@@ -9,6 +9,9 @@ class world {
     statusCoins;
     statusPoison;
     attacks = [];
+    lastX = 0;
+    lastY = 0;
+
 
 
     constructor(canvas, keyboard) {
@@ -62,11 +65,13 @@ class world {
     checkBarrierCollision() {
         this.level.barriers.forEach(b => {
             if (this.mainCharacter.isColliding(b)) {
-                this.mainCharacter.x = this.mainCharacter - lastX;
-                this.mainCharacter.y = this.mainCharacter - lastY;
+                console.log('HIT BARRIER', i, 'barrierX', b.x, 'barrierY', b.y);
+                this.mainCharacter.x = this.lastX;
+                this.mainCharacter.y = this.lastY;
             }
         });
     }
+
 
     updateBackground() {
         let w = 720;
@@ -86,6 +91,8 @@ class world {
     }
 
     draw() {
+        this.lastX = this.mainCharacter.x;
+        this.lastY = this.mainCharacter.y;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.camera_x = Math.min(0, -this.mainCharacter.x);
         this.updateBackground();
@@ -116,8 +123,11 @@ class world {
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.mainCharacter);
+
+        this.updateBackground();
         this.checkBarrierCollision();
-        console.log('HIT BARRIER');
+
+
         
         this.addToMap(this.keyboardSprite);
 
@@ -125,7 +135,6 @@ class world {
 
         requestAnimationFrame(() => this.draw());
         this.checkAttackCollisions();
-
     }
 
 
