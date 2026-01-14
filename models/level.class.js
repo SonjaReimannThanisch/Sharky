@@ -1,6 +1,5 @@
 class Level {
     enemies;
-    // waves;
     lights;
     background;
     level_end_x = 720 * 20;

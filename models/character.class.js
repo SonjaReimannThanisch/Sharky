@@ -65,7 +65,7 @@ class character extends movableObject {
         top: 130,
         left: 35,
         right: 40,
-        bottom: 50,
+        bottom: 60,
     }
 
     constructor() {
@@ -88,21 +88,18 @@ class character extends movableObject {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
-
             if (this.world.keyboard.UP && this.y > this.minY) {
                  this.y = Math.max(this.minY, this.y - this.speed);
             }
             if (this.world.keyboard.DOWN && this.y < this.maxY) {
                 this.y += this.speed;
             }
-
             if (this.world.keyboard.ATTACK) {
                 this.world.attacks.push(new FinSlapAttack(this));
                 this.world.keyboard.ATTACK = false;
             }
-
-
-
+            this.lastX = this.x;
+            this.LastY = this.y;
             this.world.camera_x = -this.x;
         }, 1000 / 60);
 
@@ -110,14 +107,13 @@ class character extends movableObject {
 
             let now = Date.now();
 
-            // FIN SLAP → D
             if (this.world.keyboard.D && now - this.lastAttack > this.attackCooldown) {
                 this.world.attacks.push(new FinSlapAttack(this));
                 this.lastAttack = now;
                 return;
             }
 
-            // BUBBLE → A
+
             if (this.world.keyboard.A && now - this.lastAttack > this.attackCooldown) {
                 this.world.attacks.push(new BubbleTrapAttack(this));
                 this.lastAttack = now;

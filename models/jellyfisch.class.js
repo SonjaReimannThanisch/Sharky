@@ -29,8 +29,8 @@ class jellyfisch extends movableObject {
         this.images = (color === 'yellow') ? this.IMAGES_MOVE_YELLOW : this.IMAGES_MOVE_LILA;
         this.loadImage(this.images[0]);
         this.loadImages(this.images);
-        this.x = 200 + Math.random() * 500;
-        this.y = 40 + Math.random() * 200;
+        this.x = 890 + Math.random() * 500;
+        this.y = 100 + Math.random() * 200;
         this.speed = 0.15 + Math.random() * 0.5;
         this.animate();
     }

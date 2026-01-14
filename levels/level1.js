@@ -49,9 +49,9 @@ const level1 = new Level(
     ],
 
     [
-        new barriers('img/3. Background/Barrier/1.png', 900, 120, 500, 300),
-        new barriers('img/3. Background/Barrier/2.png', 1600, 260, 600, 250),
-        new barriers('img/3. Background/Barrier/3.png', 1900, 260, 600, 250),
+        new barriers('img/3. Background/Barrier/2.png', 1630, 200, 600, 280),
+        new barriers('img/3. Background/Barrier/1.png', 2540, 0, 850, 480),
+        new barriers('img/3. Background/Barrier/3.png', 3440, 0, 200, 340),
     ],
     
 )

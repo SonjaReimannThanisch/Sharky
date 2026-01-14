@@ -43,8 +43,8 @@ class pufferfisch extends movableObject {
         this.loadImage(this.images[0]);
         this.loadImages(this.images);
 
-        this.x = 200 + Math.random() * 500;
-        this.y = 40 + Math.random() * 200;
+        this.x = 1440 + Math.random() * 500;
+        this.y = 140 + Math.random() * 200;
         this.speed = 0.15 + Math.random() * 0.5;
         this.animate();
     }

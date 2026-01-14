@@ -59,6 +59,15 @@ class world {
         });
     }
 
+    checkBarrierCollision() {
+        this.level.barriers.forEach(b => {
+            if (this.mainCharacter.isColliding(b)) {
+                this.mainCharacter.x = this.mainCharacter - lastX;
+                this.mainCharacter.y = this.mainCharacter - lastY;
+            }
+        });
+    }
+
     updateBackground() {
         let w = 720;
         let groups = [
@@ -105,9 +114,11 @@ class world {
         this.addToMap(this.statusPoison);
 
         this.ctx.translate(this.camera_x, 0);
-        // this.addObjectsToMap(this.level.barriers);
 
         this.addToMap(this.mainCharacter);
+        this.checkBarrierCollision();
+        console.log('HIT BARRIER');
+        
         this.addToMap(this.keyboardSprite);
 
         this.ctx.translate(-this.camera_x, 0);
