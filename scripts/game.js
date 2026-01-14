@@ -10,8 +10,6 @@ function init() {
     console.log('My Charakter is', gameWorld.mainCharacter);
     
     console.log('My Keyboard is', gameWorld.keyboard);
-    console.log('My enemy is', gameWorld.enemies);
-    console.log('My backgrounds is', gameWorld.backgrounds);
     
 }
 

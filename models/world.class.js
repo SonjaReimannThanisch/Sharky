@@ -81,6 +81,12 @@ class world {
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.background);
+        // console.log('barriers:', this.level.barriers);
+        // console.log('barriers length:', this.level.barriers?.length);
+        // console.log('first barrier:', this.level.barriers?.[0]);
+        this.addObjectsToMap(this.level.barriers);
+ 
+
         this.ctx.save();
         this.ctx.globalAlpha = 0.25;
         this.ctx.restore();
@@ -100,7 +106,7 @@ class world {
         this.addToMap(this.statusPoison);
 
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.level.barriers);
+        // this.addObjectsToMap(this.level.barriers);
 
         this.addToMap(this.mainCharacter);
         this.addToMap(this.keyboardSprite);
