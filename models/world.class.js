@@ -67,9 +67,11 @@ class world {
             this.level.background.slice(4, 6),
         ];
         let leftEdge = -this.camera_x;
+        let rightEdge = leftEdge + w;
         groups.forEach(g => {
             g.forEach(bg => {
-            if (bg.x + w < leftEdge) bg.x += w * g.length;
+            if (bg.x + w < leftEdge) bg.x += w * g.length
+            if (bg.x > rightEdge) bg.x -= w * g.length;
             });
         });
     }
@@ -81,9 +83,6 @@ class world {
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.background);
-        // console.log('barriers:', this.level.barriers);
-        // console.log('barriers length:', this.level.barriers?.length);
-        // console.log('first barrier:', this.level.barriers?.[0]);
         this.addObjectsToMap(this.level.barriers);
  
 
