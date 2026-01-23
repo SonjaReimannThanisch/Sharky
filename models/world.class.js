@@ -65,9 +65,19 @@ class world {
     checkBarrierCollision() {
         this.level.barriers.forEach(b => {
             if (this.mainCharacter.isColliding(b)) {
-                console.log('HIT BARRIER', i, 'barrierX', b.x, 'barrierY', b.y);
+                // console.log('HIT BARRIER', i, 'barrierX', b.x, 'barrierY', b.y);
                 this.mainCharacter.x = this.lastX;
                 this.mainCharacter.y = this.lastY;
+            }
+        });
+    }
+
+    checkCoinCollision() {
+        this.level.coins.forEach((coin, i) => {
+            if (this.mainCharacter,isColliding(coin)) {
+                this.level.coins.splice(i, 1);
+                this.mainCharacter.coins += 10;
+                this.statusCoins.setPercentage(this.mainCharacter.coins);
             }
         });
     }
@@ -133,8 +143,11 @@ class world {
 
         this.ctx.translate(-this.camera_x, 0);
 
+        
+
         requestAnimationFrame(() => this.draw());
         this.checkAttackCollisions();
+        this.checkCoinCollision();
     }
 
 
