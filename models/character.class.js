@@ -9,6 +9,7 @@ class character extends movableObject {
     lastAttack = 0;
     attackCooldown = 400;
     coins = 0;
+    bottle = 0;
 
     IMAGES_IDLE = [
         'img/1.Sharkie/1.IDLE/1.png',

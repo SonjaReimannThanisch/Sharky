@@ -63,24 +63,44 @@ class world {
     }
 
     checkBarrierCollision() {
+        let hit = false;
+
         this.level.barriers.forEach(b => {
             if (this.mainCharacter.isColliding(b)) {
-                // console.log('HIT BARRIER', i, 'barrierX', b.x, 'barrierY', b.y);
-                this.mainCharacter.x = this.lastX;
-                this.mainCharacter.y = this.lastY;
+                hit = true;
             }
         });
+
+        if (hit) {
+            this.mainCharacter.x = this.lastX;
+            this.mainCharacter.y = this.lastY;
+        } else {
+            this.lastX = this.mainCharacter.x;
+            this.lastY = this.mainCharacter.y;
+        }
     }
 
     checkCoinCollision() {
         this.level.coins.forEach((coin, i) => {
-            if (this.mainCharacter.isColliding(coin)) {                
+            if (this.mainCharacter.isColliding(coin)) {
                 this.level.coins.splice(i, 1);
                 this.mainCharacter.coins += 10;
                 this.statusCoins.setPercentage(this.mainCharacter.coins);
             }
         });
     }
+
+    // checkBottleCollision() {
+    //     this.level.bottle.forEach((bottle, i) => {
+    //         console.log(bottle);
+            
+    //         if (this.mainCharacter.isColliding(bottle)) {
+    //             this.level.bottle.splice(i, 1);
+    //             this.mainCharacter.bottle += 10;
+    //             this.statusPoison.setPercentage(this.mainCharacter.bottle);
+    //         }
+    //     });
+    // }
 
 
     updateBackground() {
@@ -101,8 +121,6 @@ class world {
     }
 
     draw() {
-        this.lastX = this.mainCharacter.x;
-        this.lastY = this.mainCharacter.y;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.camera_x = Math.min(0, -this.mainCharacter.x);
         this.updateBackground();
@@ -111,7 +129,7 @@ class world {
         this.addObjectsToMap(this.level.background);
         this.addObjectsToMap(this.level.barriers);
  
-
+        this.checkBarrierCollision();
         this.ctx.save();
         this.ctx.globalAlpha = 0.25;
         this.ctx.restore();
@@ -135,10 +153,6 @@ class world {
         this.addToMap(this.mainCharacter);
 
         this.updateBackground();
-        this.checkBarrierCollision();
-
-
-        
         this.addToMap(this.keyboardSprite);
 
         this.ctx.translate(-this.camera_x, 0);
@@ -148,6 +162,7 @@ class world {
         requestAnimationFrame(() => this.draw());
         this.checkAttackCollisions();
         this.checkCoinCollision();
+        // this.checkBottleCollision();
     }
 
 
