@@ -74,7 +74,7 @@ class world {
 
     checkCoinCollision() {
         this.level.coins.forEach((coin, i) => {
-            if (this.mainCharacter,isColliding(coin)) {
+            if (this.mainCharacter.isColliding(coin)) {                
                 this.level.coins.splice(i, 1);
                 this.mainCharacter.coins += 10;
                 this.statusCoins.setPercentage(this.mainCharacter.coins);
