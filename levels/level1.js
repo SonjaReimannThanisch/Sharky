@@ -50,8 +50,12 @@ const level1 = new Level(
 
     [
         new barriers('img/3. Background/Barrier/2.png', 1630, 200, 600, 280),
-        new barriers('img/3. Background/Barrier/1.png', 2540, 0, 850, 480),
-        new barriers('img/3. Background/Barrier/3.png', 3440, 0, 200, 340),
+        
+        // new Collider(2540, 0, 850, 480),  // block links
+        // new Collider(3440, 0, 200, 340),
+        // new barriers('', 2050, 200, 180, 280),
+        // new barriers('img/3. Background/Barrier/1.png', 2540, 0, 850, 480),
+        new barriers('img/3. Background/Barrier/3.png', 3440, 10, 200, 240),
     ],
     
 )
