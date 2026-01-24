@@ -62,7 +62,7 @@ class movableObject extends drawableObject {
         timePassed = timePassed / 1000;
         // console.log(timePassed);
         
-        return timePassed < 1.5;
+        return timePassed < 0.6;
     }
 
     isDead() {

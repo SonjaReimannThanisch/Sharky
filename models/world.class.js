@@ -62,18 +62,53 @@ class world {
         });
     }
 
+    // checkBarrierCollision() {
+    //     let hit = false;
+
+    //     this.level.barriers.forEach(b => {
+    //         if (this.mainCharacter.isColliding(b)) {
+    //             hit = true;
+    //         }
+    //     });
+
+    //     if (hit) {
+    //         this.mainCharacter.x = this.lastX;
+    //         this.mainCharacter.y = this.lastY;
+    //         if (!this.mainCharacter.isHurt()) {
+    //         this.mainCharacter.hit();
+    //         this.statusLife.setPercentage(this.mainCharacter.energy);
+    //         }
+    //     } else {
+    //         this.lastX = this.mainCharacter.x;
+    //         this.lastY = this.mainCharacter.y;
+    //     }
+    // }
+
     checkBarrierCollision() {
         let hit = false;
 
         this.level.barriers.forEach(b => {
-            if (this.mainCharacter.isColliding(b)) {
-                hit = true;
-            }
+            if (this.mainCharacter.isColliding(b)) hit = true;
         });
 
         if (hit) {
+            // push back
             this.mainCharacter.x = this.lastX;
             this.mainCharacter.y = this.lastY;
+
+            // only damage if player is pressing into the barrier
+            const pressing =
+            this.keyboard.LEFT || this.keyboard.RIGHT || this.keyboard.UP || this.keyboard.DOWN;
+
+            if (pressing && !this.mainCharacter.isHurt()) {
+            this.mainCharacter.hit();
+            this.statusLife.setPercentage(this.mainCharacter.energy);
+
+            if (this.mainCharacter.energy <= 0  && !this.isGameOver) {
+                console.log('GAME OVER');
+                this.isGameOver = true;
+            }
+            }
         } else {
             this.lastX = this.mainCharacter.x;
             this.lastY = this.mainCharacter.y;
@@ -123,6 +158,7 @@ class world {
     }
 
     draw() {
+        if (this.isGameOver) return;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.camera_x = Math.min(0, -this.mainCharacter.x);
         this.updateBackground();
