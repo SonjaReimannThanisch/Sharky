@@ -8,6 +8,7 @@ class world {
     statusLife;
     statusCoins;
     statusPoison;
+    gameOver;
     attacks = [];
     lastX = 0;
     lastY = 0;
@@ -61,28 +62,6 @@ class world {
             });
         });
     }
-
-    // checkBarrierCollision() {
-    //     let hit = false;
-
-    //     this.level.barriers.forEach(b => {
-    //         if (this.mainCharacter.isColliding(b)) {
-    //             hit = true;
-    //         }
-    //     });
-
-    //     if (hit) {
-    //         this.mainCharacter.x = this.lastX;
-    //         this.mainCharacter.y = this.lastY;
-    //         if (!this.mainCharacter.isHurt()) {
-    //         this.mainCharacter.hit();
-    //         this.statusLife.setPercentage(this.mainCharacter.energy);
-    //         }
-    //     } else {
-    //         this.lastX = this.mainCharacter.x;
-    //         this.lastY = this.mainCharacter.y;
-    //     }
-    // }
 
     checkBarrierCollision() {
         let hit = false;

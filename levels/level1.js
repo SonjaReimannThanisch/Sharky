@@ -52,27 +52,17 @@ const level1 = new Level(
         new BackgroundObject('img/3. Background/Layers/2. Floor/D2.png', 720),
     ],
 
-    // [
-    //     new barriers('img/3. Background/Barrier/2.png', 1630, 200, 600, 280),
-    //     new barriers('img/3. Background/Barrier/1.png', 2540, 0, 850, 480),
-    //     // new barriers('', 2540, 0, 850, 480),
-    //     // new barriers('', 3390, 0, 850, 480),
-    //     new barriers('img/3. Background/Barrier/3.png', 3440, 10, 200, 240),
-    // ],
-
     [
         new barriers('img/3. Background/Barrier/2.png', 1630, 200, 600, 280),
         new barriers('img/3. Background/Barrier/3.png', 3440, 10, 200, 240),
-
-        // --- HÖHLE: Bild + 2 Kollisionsstreifen ---
         (() => {
-            const caveDeco = new barriers('img/3. Background/Barrier/1.png', 2540, 0, 850, 480);
+            let caveDeco = new barriers('img/3. Background/Barrier/1.png', 2540, 0, 850, 480);
             caveDeco.offset = { top: 9999, left: 9999, right: 9999, bottom: 9999 };
 
-            const caveTop = new barriers('', 2540, 0, 850, 140);
+            let caveTop = new barriers('', 2540, 0, 850, 140);
             caveTop.offset = { top: 0, left: 0, right: 0, bottom: 0 };
 
-            const caveBottom = new barriers('', 2540, 340, 850, 140);
+            let caveBottom = new barriers('', 2540, 340, 850, 140);
             caveBottom.offset = { top: 0, left: 0, right: 0, bottom: 0 };
 
             return [caveDeco, caveTop, caveBottom];

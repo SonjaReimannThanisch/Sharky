@@ -29,17 +29,6 @@ class statusBar extends drawableObject {
         'img/4.Marcadores/green/poisoned bubbles/100_copia3.png',
     ];
 
-    //     IMAGES_STATUS_POISON = [
-    //     'img/4.Marcadores/green/poisoned bubbles/100_copia3.png',
-    //     'img/4.Marcadores/green/poisoned bubbles/80_copia2.png',
-    //     'img/4.Marcadores/green/poisoned bubbles/60_copia2.png',
-    //     'img/4.Marcadores/green/poisoned bubbles/40_copia2.png',
-    //     'img/4.Marcadores/green/poisoned bubbles/20_copia3.png',
-    //     'img/4.Marcadores/green/poisoned bubbles/0_copia2.png',
-    // ];
-
-
-
     constructor(type = 'life') {
         super();
         this.images =

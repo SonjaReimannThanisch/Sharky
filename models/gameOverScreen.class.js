@@ -10,8 +10,8 @@ class GameOverScreen extends drawableObject {
 
     constructor() {
         super();
-        this.loadImage(this.IMAGES_GAMEOVER);
-        this.loadImage(this.IMAGES_TRYAGAIN);
+        this.loadImage(this.IMAGES_GAMEOVER[0]);
+        this.loadImage(this.IMAGES_TRYAGAIN[0]);
 
         this.x = 40;
         this.y = 0;
