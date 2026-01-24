@@ -84,23 +84,25 @@ class world {
         this.level.coins.forEach((coin, i) => {
             if (this.mainCharacter.isColliding(coin)) {
                 this.level.coins.splice(i, 1);
-                this.mainCharacter.coins += 10;
+                // this.mainCharacter.coins += 10;
+                this.mainCharacter.coins = Math.min(100, (this.mainCharacter.coins || 0) + 10);
                 this.statusCoins.setPercentage(this.mainCharacter.coins);
             }
         });
     }
 
-    // checkBottleCollision() {
-    //     this.level.bottle.forEach((bottle, i) => {
-    //         console.log(bottle);
-            
-    //         if (this.mainCharacter.isColliding(bottle)) {
-    //             this.level.bottle.splice(i, 1);
-    //             this.mainCharacter.bottle += 10;
-    //             this.statusPoison.setPercentage(this.mainCharacter.bottle);
-    //         }
-    //     });
-    // }
+
+    checkPoisonCollision() {
+        this.level.poison.forEach((poison, i) => {
+            if (this.mainCharacter.isColliding(poison)) {
+            this.level.poison.splice(i, 1);
+            this.mainCharacter.bottle = Math.min(100, (this.mainCharacter.bottle || 0) + 10);
+            console.log('bottle value', this.mainCharacter.bottle);
+            this.statusPoison.setPercentage(this.mainCharacter.bottle);
+            console.log('poison list', this.level.poison.length);
+            }
+        });
+    }
 
 
     updateBackground() {
@@ -162,7 +164,7 @@ class world {
         requestAnimationFrame(() => this.draw());
         this.checkAttackCollisions();
         this.checkCoinCollision();
-        // this.checkBottleCollision();
+        this.checkPoisonCollision();
     }
 
 

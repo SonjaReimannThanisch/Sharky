@@ -54,11 +54,18 @@ class statusBar extends drawableObject {
         this.width = 180;
         this.height = 50;
 
-        this.setPercentage(100);
+        const start = (type === 'life') ? 100 : 0;
+        this.setPercentage(start);
     }
 
     setPercentage(percentage) {
-        this.percentage = percentage;
+        this.percentage = Math.max(0, Math.min(100, percentage));
+        let path = this.images[this.resolveImageIndex()];
+        this.img = this.imageCache[path];
+    }
+
+    setPercentage(percentage) {
+        this.percentage = Math.max(0, Math.min(100, percentage));
         let path = this.images[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }

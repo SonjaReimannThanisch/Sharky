@@ -79,7 +79,9 @@ class character extends movableObject {
     }
 
     animate() {
-        this.maxY = this.world.canvas.height - this.height;
+        let o = this.offset || { top: 0, left: 0, right: 0, bottom: 0 };
+        let hitboxHeight = this.height - o.top - o.bottom;
+        this.maxY = this.world.canvas.height - hitboxHeight - o.top;
 
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -94,7 +96,7 @@ class character extends movableObject {
                  this.y = Math.max(this.minY, this.y - this.speed);
             }
             if (this.world.keyboard.DOWN && this.y < this.maxY) {
-                this.y += this.speed;
+                this.y = Math.min(this.maxY, this.y + this.speed);
             }
             if (this.world.keyboard.ATTACK) {
                 this.world.attacks.push(new FinSlapAttack(this));

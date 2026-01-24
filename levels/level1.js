@@ -31,6 +31,10 @@ const level1 = new Level(
 
     [
         new poison(290, 350),
+        new poison(350, 350),
+        new poison(410, 350),
+        new poison(470, 350),
+        new poison(530, 350),
     ],
 
     [
