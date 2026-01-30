@@ -14,7 +14,6 @@ class world {
     lastY = 0;
 
 
-
     constructor(canvas, keyboard) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
@@ -71,12 +70,9 @@ class world {
         });
 
         if (hit) {
-            // push back
             this.mainCharacter.x = this.lastX;
             this.mainCharacter.y = this.lastY;
-
-            // only damage if player is pressing into the barrier
-            const pressing =
+            let pressing =
             this.keyboard.LEFT || this.keyboard.RIGHT || this.keyboard.UP || this.keyboard.DOWN;
 
             if (pressing && !this.mainCharacter.isHurt()) {
@@ -118,6 +114,20 @@ class world {
         });
     }
 
+    animateLights() {
+        // Zeit vorwärts schieben (pro Frame)
+        this.lightTime += 0.016; // reicht erstmal. Später kann man deltaTime sauber machen.
+
+        this.level.lights.forEach((light, i) => {
+            // Pulsieren der Transparenz
+            light.alpha = this.baseLightAlpha +
+                        this.lightPulseAmp * Math.sin(this.lightTime * this.lightPulseSpeed + i);
+
+            // optional: ganz leichtes Driften (Wasserflimmern)
+            // light.x -= 0.05;  // super subtil; wenn du das aktivierst, ist updateLights() wichtig fürs Wrapping
+        });
+    }
+
 
     updateBackground() {
         let w = 720;
@@ -137,13 +147,8 @@ class world {
     }
 
     updateLights() {
-        let w = 720;
-        let leftEdge = -this.camera_x;
-        let rightEdge = leftEdge + w;
-        this.level.lights.forEach(light => {
-            if (light.x + w < leftEdge) light.x += w * this.level.lights.length;
-            if (light.x > rightEdge)    light.x -= w * this.level.lights.length;
-        });
+        let t = performance.now() / 1000;
+        this.level.lights.forEach(l => l.update(t));
     }
 
     draw() {
@@ -152,16 +157,15 @@ class world {
         this.camera_x = Math.min(0, -this.mainCharacter.x);
         this.updateBackground();
         this.updateLights();
+        this.animateLights();
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.background);
         this.addObjectsToMap(this.level.barriers);
  
         this.checkBarrierCollision();
-        this.ctx.save();
-        this.ctx.globalAlpha = 0.25;
         this.addObjectsToMap(this.level.lights);
-        this.ctx.restore();
+
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.poison)
 
@@ -179,8 +183,6 @@ class world {
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.mainCharacter);
-
-        this.updateBackground();
         this.addToMap(this.keyboardSprite);
 
         this.ctx.translate(-this.camera_x, 0);

@@ -1,21 +1,23 @@
 class Light extends movableObject {
-    // x = 20;
-    // height = 250;
-    // width = 250;
+    y = 0;
+    width = 720;
+    height = 480;
+    baseAlpha = 0.55;
+    pulseAmp = 1;
+    pulseSpeed = 6;
+    alpha = this.baseAlpha;
+    phase = Math.random() * Math.PI * 2;
+    debugTint = true;              // zum Testen
+    tintColor = "magenta";         // knallig zum Prüfen
+    tintStrength = 0.8;            // 0..1
 
+  constructor(imagePath, x = 0) {
+    super();
+    this.loadImage(imagePath);
+    this.x = x;
+  }
 
-    constructor(imagePath, x = 0) {
-        super();
-        this.loadImage(imagePath);
-        this.x = x;
-        this.y = 0;
-        this.width = 720;
-        this.height = 480;
-        // this.animate();
-    }
-
-    // animate() {
-    //     this.moveLeft();
-    // }
-
+  update(t) {
+    this.alpha = this.baseAlpha + this.pulseAmp * Math.sin(t * this.pulseSpeed + this.phase);
+  }
 }

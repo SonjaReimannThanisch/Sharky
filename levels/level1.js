@@ -37,28 +37,28 @@ const level1 = new Level(
         new poison(530, 350),
     ],
 
-    // [
-    //     new Light('img/3. Background/Legacy/Layers/1. Light/left.png',   0),
-    //     new Light('img/3. Background/Legacy/Layers/1. Light/middle.png', 720),
-    //     new Light('img/3. Background/Legacy/Layers/1. Light/right.png',  1440),
-    // ],
-
     [
-        new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 0),
-        new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', 720),
-
-        new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 0),
-        new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D2.png', 720),
-
-        new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 0),
-        new BackgroundObject('img/3. Background/Layers/2. Floor/D2.png', 720),
+        new Light('img/3.Background/Layers/1.Light/1.png',   0),
+        new Light('img/3.Background/Layers/1.Light/2.png', 720),
+        // new Light('img/3.Background/Layers/1.Light/COMPLETO.png',  1440),
     ],
 
     [
-        new barriers('img/3. Background/Barrier/2.png', 1630, 200, 600, 280),
-        new barriers('img/3. Background/Barrier/3.png', 3440, 10, 200, 240),
+        new BackgroundObject('img/3.Background/Layers/5.Water/D1.png', 0),
+        new BackgroundObject('img/3.Background/Layers/5.Water/D2.png', 720),
+
+        new BackgroundObject('img/3.Background/Layers/3.Fondo 1/D1.png', 0),
+        new BackgroundObject('img/3.Background/Layers/3.Fondo 1/D2.png', 720),
+
+        new BackgroundObject('img/3.Background/Layers/2.Floor/D1.png', 0),
+        new BackgroundObject('img/3.Background/Layers/2.Floor/D2.png', 720),
+    ],
+
+    [
+        new barriers('img/3.Background/Barrier/2.png', 1630, 200, 600, 280),
+        new barriers('img/3.Background/Barrier/3.png', 3440, 10, 200, 240),
         (() => {
-            let caveDeco = new barriers('img/3. Background/Barrier/1.png', 2540, 0, 850, 480);
+            let caveDeco = new barriers('img/3.Background/Barrier/1.png', 2540, 0, 850, 480);
             caveDeco.offset = { top: 9999, left: 9999, right: 9999, bottom: 9999 };
 
             let caveTop = new barriers('', 2540, 0, 850, 140);
