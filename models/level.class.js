@@ -12,5 +12,6 @@ class Level {
         this.lights = lights;
         this.background  = background;
         this.barriers = barriers;
+        this.lights = lights;
     }
 } 

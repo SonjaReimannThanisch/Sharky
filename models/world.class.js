@@ -136,11 +136,22 @@ class world {
         });
     }
 
+    updateLights() {
+        let w = 720;
+        let leftEdge = -this.camera_x;
+        let rightEdge = leftEdge + w;
+        this.level.lights.forEach(light => {
+            if (light.x + w < leftEdge) light.x += w * this.level.lights.length;
+            if (light.x > rightEdge)    light.x -= w * this.level.lights.length;
+        });
+    }
+
     draw() {
         if (this.isGameOver) return;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.camera_x = Math.min(0, -this.mainCharacter.x);
         this.updateBackground();
+        this.updateLights();
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.background);
@@ -149,8 +160,8 @@ class world {
         this.checkBarrierCollision();
         this.ctx.save();
         this.ctx.globalAlpha = 0.25;
-        this.ctx.restore();
         this.addObjectsToMap(this.level.lights);
+        this.ctx.restore();
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.poison)
 

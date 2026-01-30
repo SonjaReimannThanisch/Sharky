@@ -1,21 +1,21 @@
 class Light extends movableObject {
-    x = 20;
-    height = 250;
-    width = 250;
+    // x = 20;
+    // height = 250;
+    // width = 250;
 
 
-    constructor() {
+    constructor(imagePath, x = 0) {
         super();
-        this.loadImage('img/3. Background/Legacy/Layers/1. Light/1.png');
-        this.x = 0;
+        this.loadImage(imagePath);
+        this.x = x;
         this.y = 0;
         this.width = 720;
         this.height = 480;
-        this.animate();
+        // this.animate();
     }
 
-    animate() {
-        this.moveLeft();
-    }
+    // animate() {
+    //     this.moveLeft();
+    // }
 
 }
