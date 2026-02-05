@@ -67,11 +67,8 @@ class world {
 
     checkBarrierCollision() {
         let hit = false;
-
         this.level.barriers.forEach(b => {
-            if (this.mainCharacter.isColliding(b)) hit = true;
-        });
-
+            if (this.mainCharacter.isColliding(b)) hit = true;});
         if (hit) {
             this.mainCharacter.x = this.lastX;
             this.mainCharacter.y = this.lastY;
@@ -81,9 +78,7 @@ class world {
             this.statusLife.setPercentage(this.mainCharacter.energy);
             if (this.mainCharacter.energy <= 0  && !this.isGameOver) {
                 console.log('GAME OVER');
-                this.isGameOver = true;
-            }
-            }
+                this.isGameOver = true;}}
         } else {
             this.lastX = this.mainCharacter.x;
             this.lastY = this.mainCharacter.y;
@@ -93,7 +88,6 @@ class world {
     isPressingIntoBarrier() {
         return this.keyboard.LEFT || this.keyboard.RIGHT || this.keyboard.UP || this.keyboard.DOWN;
     }
-
 
     checkCoinCollision() {
         this.level.coins.forEach((coin, i) => {
@@ -105,7 +99,6 @@ class world {
             }
         });
     }
-
 
     checkPoisonCollision() {
         this.level.poison.forEach((poison, i) => {
@@ -136,7 +129,6 @@ class world {
         });
     }
 
-
     updateLights() {
         let w = this.TILE_WIDTH;
         let leftEdge = -this.camera_x;
@@ -148,51 +140,6 @@ class world {
             if (light.x > rightEdge)    light.x -= w * this.level.lights.length;
         });
     }
-
-
-
-    // draw() {
-    //     if (this.isGameOver) return;
-    //     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    //     this.camera_x = Math.min(0, -this.mainCharacter.x);
-    //     this.updateBackground();
-    //     this.updateLights();
-
-    //     this.ctx.translate(this.camera_x, 0);
-    //     this.addObjectsToMap(this.level.background);
-    //     this.addObjectsToMap(this.level.barriers);
- 
-    //     this.checkBarrierCollision();
-    //     this.addObjectsToMap(this.level.lights);
-
-    //     this.addObjectsToMap(this.level.coins);
-    //     this.addObjectsToMap(this.level.poison)
-
-    //     this.attacks = this.attacks.filter(a => !a.isExpired());
-    //     this.addObjectsToMap(this.attacks);
-
-    //     this.addObjectsToMap(this.level.enemies);
-
-    //     this.ctx.translate(-this.camera_x, 0);
-    //     //--------space for fixed objects---------
-    //     this.addToMap(this.statusLife);
-    //     this.addToMap(this.statusCoins);
-    //     this.addToMap(this.statusPoison);
-
-    //     this.ctx.translate(this.camera_x, 0);
-
-    //     this.addToMap(this.mainCharacter);
-    //     this.addToMap(this.keyboardSprite);
-
-    //     this.ctx.translate(-this.camera_x, 0);
-
-        
-
-    //     requestAnimationFrame(() => this.draw());
-    //     this.checkAttackCollisions();
-    //     this.checkCoinCollision();
-    //     this.checkPoisonCollision();
-    // }
 
     draw() {
         if (this.isGameOver) return;
@@ -220,7 +167,6 @@ class world {
 
     drawWorldLayer() {
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.background);
         this.addObjectsToMap(this.level.barriers);
         this.addObjectsToMap(this.level.lights);
@@ -228,14 +174,10 @@ class world {
         this.addObjectsToMap(this.level.poison);
         this.addObjectsToMap(this.attacks);
         this.addObjectsToMap(this.level.enemies);
-
-        // ✅ Character MUSS im selben Transform gezeichnet werden
         this.addToMap(this.mainCharacter);
         this.addToMap(this.keyboardSprite);
-
         this.ctx.translate(-this.camera_x, 0);
     }
-
 
     drawHudLayer() {
         this.addToMap(this.statusLife);
@@ -246,7 +188,6 @@ class world {
     endFrame() {
         requestAnimationFrame(() => this.draw());
     }
-
 
     addObjectsToMap(objects) {
         objects.forEach(o => this.addToMap(o));
@@ -262,7 +203,6 @@ class world {
         this.ctx.globalAlpha = prevAlpha;
     }
 
-
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -274,5 +214,4 @@ class world {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
-
 }
