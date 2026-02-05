@@ -8,10 +8,13 @@ class world {
     statusLife;
     statusCoins;
     statusPoison;
-    gameOver;
     attacks = [];
     lastX = 0;
     lastY = 0;
+    isGameOver = false;
+    TILE_WIDTH = 720;
+
+
 
 
     constructor(canvas, keyboard) {
@@ -72,13 +75,10 @@ class world {
         if (hit) {
             this.mainCharacter.x = this.lastX;
             this.mainCharacter.y = this.lastY;
-            let pressing =
-            this.keyboard.LEFT || this.keyboard.RIGHT || this.keyboard.UP || this.keyboard.DOWN;
-
+            let pressing = this.isPressingIntoBarrier();
             if (pressing && !this.mainCharacter.isHurt()) {
             this.mainCharacter.hit();
             this.statusLife.setPercentage(this.mainCharacter.energy);
-
             if (this.mainCharacter.energy <= 0  && !this.isGameOver) {
                 console.log('GAME OVER');
                 this.isGameOver = true;
@@ -89,6 +89,11 @@ class world {
             this.lastY = this.mainCharacter.y;
         }
     }
+
+    isPressingIntoBarrier() {
+        return this.keyboard.LEFT || this.keyboard.RIGHT || this.keyboard.UP || this.keyboard.DOWN;
+    }
+
 
     checkCoinCollision() {
         this.level.coins.forEach((coin, i) => {
@@ -115,7 +120,7 @@ class world {
     }
 
     updateBackground() {
-        let w = 720;
+        let w = this.TILE_WIDTH;
         let groups = [
             this.level.background.slice(0, 2),
             this.level.background.slice(2, 4),
@@ -131,52 +136,115 @@ class world {
         });
     }
 
+
     updateLights() {
+        let w = this.TILE_WIDTH;
+        let leftEdge = -this.camera_x;
+        let rightEdge = leftEdge + w;
         let t = performance.now() / 1000;
-        this.level.lights.forEach(l => l.update(t));
+        this.level.lights.forEach(light => {
+            light.update(t);
+            if (light.x + w < leftEdge) light.x += w * this.level.lights.length;
+            if (light.x > rightEdge)    light.x -= w * this.level.lights.length;
+        });
     }
+
+
+
+    // draw() {
+    //     if (this.isGameOver) return;
+    //     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    //     this.camera_x = Math.min(0, -this.mainCharacter.x);
+    //     this.updateBackground();
+    //     this.updateLights();
+
+    //     this.ctx.translate(this.camera_x, 0);
+    //     this.addObjectsToMap(this.level.background);
+    //     this.addObjectsToMap(this.level.barriers);
+ 
+    //     this.checkBarrierCollision();
+    //     this.addObjectsToMap(this.level.lights);
+
+    //     this.addObjectsToMap(this.level.coins);
+    //     this.addObjectsToMap(this.level.poison)
+
+    //     this.attacks = this.attacks.filter(a => !a.isExpired());
+    //     this.addObjectsToMap(this.attacks);
+
+    //     this.addObjectsToMap(this.level.enemies);
+
+    //     this.ctx.translate(-this.camera_x, 0);
+    //     //--------space for fixed objects---------
+    //     this.addToMap(this.statusLife);
+    //     this.addToMap(this.statusCoins);
+    //     this.addToMap(this.statusPoison);
+
+    //     this.ctx.translate(this.camera_x, 0);
+
+    //     this.addToMap(this.mainCharacter);
+    //     this.addToMap(this.keyboardSprite);
+
+    //     this.ctx.translate(-this.camera_x, 0);
+
+        
+
+    //     requestAnimationFrame(() => this.draw());
+    //     this.checkAttackCollisions();
+    //     this.checkCoinCollision();
+    //     this.checkPoisonCollision();
+    // }
 
     draw() {
         if (this.isGameOver) return;
+        this.beginFrame();
+        this.updateWorldState();
+        this.drawWorldLayer();
+        this.drawHudLayer();
+        this.endFrame();
+    }
+
+    beginFrame() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.camera_x = Math.min(0, -this.mainCharacter.x);
+    }
+
+    updateWorldState() {
         this.updateBackground();
         this.updateLights();
+        this.checkBarrierCollision();
+        this.checkAttackCollisions();
+        this.checkCoinCollision();
+        this.checkPoisonCollision();
+        this.attacks = this.attacks.filter(a => !a.isExpired());
+    }
 
+    drawWorldLayer() {
         this.ctx.translate(this.camera_x, 0);
+
         this.addObjectsToMap(this.level.background);
         this.addObjectsToMap(this.level.barriers);
- 
-        this.checkBarrierCollision();
         this.addObjectsToMap(this.level.lights);
-
         this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.poison)
-
-        this.attacks = this.attacks.filter(a => !a.isExpired());
+        this.addObjectsToMap(this.level.poison);
         this.addObjectsToMap(this.attacks);
-
         this.addObjectsToMap(this.level.enemies);
 
-        this.ctx.translate(-this.camera_x, 0);
-        //--------space for fixed objects---------
-        this.addToMap(this.statusLife);
-        this.addToMap(this.statusCoins);
-        this.addToMap(this.statusPoison);
-
-        this.ctx.translate(this.camera_x, 0);
-
+        // ✅ Character MUSS im selben Transform gezeichnet werden
         this.addToMap(this.mainCharacter);
         this.addToMap(this.keyboardSprite);
 
         this.ctx.translate(-this.camera_x, 0);
+    }
 
-        
 
+    drawHudLayer() {
+        this.addToMap(this.statusLife);
+        this.addToMap(this.statusCoins);
+        this.addToMap(this.statusPoison);
+    }
+
+    endFrame() {
         requestAnimationFrame(() => this.draw());
-        this.checkAttackCollisions();
-        this.checkCoinCollision();
-        this.checkPoisonCollision();
     }
 
 
@@ -187,12 +255,10 @@ class world {
     addToMap(mo) {
         const prevAlpha = this.ctx.globalAlpha;
         if (mo.alpha !== undefined) this.ctx.globalAlpha = mo.alpha;
-
         if (mo.otherDirection) this.flipImage(mo);
         mo.draw(this.ctx);
         if (mo.drawFrame) mo.drawFrame(this.ctx);
         if (mo.otherDirection) this.flipImageBack(mo);
-
         this.ctx.globalAlpha = prevAlpha;
     }
 
