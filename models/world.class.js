@@ -77,12 +77,23 @@ class world {
             this.statusLife.setPercentage(this.mainCharacter.energy);
             if (this.mainCharacter.energy <= 0  && !this.isGameOver) {
                 console.log('GAME OVER');
-                this.isGameOver = true;}}
+                this.isGameOver = true;
+                this.showGameOver();
+            }}
         } else {
             this.lastX = this.mainCharacter.x;
             this.lastY = this.mainCharacter.y;
         }
     }
+
+    showGameOver() {
+        document.getElementById('gameover')?.classList.remove('hidden');
+    }
+    
+    hideGameOver() {
+        document.getElementById('gameover')?.classList.add('hidden');
+    }
+
 
     isPressingIntoBarrier() {
         return this.keyboard.LEFT || this.keyboard.RIGHT || this.keyboard.UP || this.keyboard.DOWN;
