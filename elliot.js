@@ -51,11 +51,11 @@ console.log("---\n");
 
 // function elliot { node .\elliot.js @args }
 
-//  elliot -whistle
-//  elliot -says
-//  elliot -reminds
-//  elliot -request
-//  elliot -motivates
+ elliot -whistle
+ elliot -says
+ elliot -reminds
+ elliot -request
+ elliot -motivates
 
 // node .\elliot.js -whistle
 // node .\elliot.js -says

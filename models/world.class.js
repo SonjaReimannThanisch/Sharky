@@ -1,6 +1,6 @@
 class world {
     mainCharacter = new character();
-    level = level1;
+    level;
     canvas;
     ctx;
     keyboard;
@@ -20,8 +20,7 @@ class world {
     constructor(canvas, keyboard) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
-
-
+        this.level = createLevel1();
         this.keyboard = keyboard;
         this.keyboardSprite = new Keyboard(canvas.width, canvas.height);
         this.statusLife = new statusBar('life');
