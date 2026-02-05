@@ -13,6 +13,9 @@ class Light extends movableObject {
   // pulseSpeed = 1.2;   // normal
   // pulseSpeed = 3;     // schnell
   pulseSpeed = 2.5;     // Debug / Flackern
+  baseY = 0;
+  wobbleAmp = 2;
+  wobbleSpeed = 2;
 
   phase = Math.random() * Math.PI * 2;
 
@@ -20,9 +23,11 @@ class Light extends movableObject {
     super();
     this.loadImage(imagePath);
     this.x = x;
+    this.baseY = this.y;
   }
 
   update(t) {
     this.alpha = this.baseAlpha + this.pulseAmp * Math.sin(t * this.pulseSpeed + this.phase);
+    this.y = this.baseY + this.wobbleAmp * Math.sin(t * this.wobbleSpeed + this.phase);
   }
 }
