@@ -114,21 +114,6 @@ class world {
         });
     }
 
-    animateLights() {
-        // Zeit vorwärts schieben (pro Frame)
-        this.lightTime += 0.016; // reicht erstmal. Später kann man deltaTime sauber machen.
-
-        this.level.lights.forEach((light, i) => {
-            // Pulsieren der Transparenz
-            light.alpha = this.baseLightAlpha +
-                        this.lightPulseAmp * Math.sin(this.lightTime * this.lightPulseSpeed + i);
-
-            // optional: ganz leichtes Driften (Wasserflimmern)
-            // light.x -= 0.05;  // super subtil; wenn du das aktivierst, ist updateLights() wichtig fürs Wrapping
-        });
-    }
-
-
     updateBackground() {
         let w = 720;
         let groups = [
@@ -157,7 +142,6 @@ class world {
         this.camera_x = Math.min(0, -this.mainCharacter.x);
         this.updateBackground();
         this.updateLights();
-        this.animateLights();
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.background);
@@ -201,17 +185,17 @@ class world {
     }
 
     addToMap(mo) {
-        if(mo.otherDirection) {
-            this.flipImage(mo);
-        }
+        const prevAlpha = this.ctx.globalAlpha;
+        if (mo.alpha !== undefined) this.ctx.globalAlpha = mo.alpha;
+
+        if (mo.otherDirection) this.flipImage(mo);
         mo.draw(this.ctx);
-        if(mo.drawFrame) {
-            mo.drawFrame(this.ctx);
-        }
-        if(mo.otherDirection) {
-            this.flipImageBack(mo);
-        }
+        if (mo.drawFrame) mo.drawFrame(this.ctx);
+        if (mo.otherDirection) this.flipImageBack(mo);
+
+        this.ctx.globalAlpha = prevAlpha;
     }
+
 
     flipImage(mo) {
         this.ctx.save();
