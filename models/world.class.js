@@ -49,13 +49,17 @@ class world {
         }
     }
 
+    applyDamage() {
+        this.mainCharacter.hit();
+        this.statusLife.setPercentage(this.mainCharacter.energy);
+        this.triggerGameOverIfDead();
+    }
+
     checkCollisions() {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if(this.mainCharacter.isColliding(enemy)) {
-                    this.mainCharacter.hit();
-                    this.statusLife.setPercentage(this.mainCharacter.energy);
-                    this.triggerGameOverIfDead();
+                    this.applyDamage();
                 }
             });
         }, 1000);
@@ -72,27 +76,30 @@ class world {
         });
     }
 
-    checkBarrierCollision() {
-        let hit = false;
-        this.level.barriers.forEach(b => {
-            if (this.mainCharacter.isColliding(b)) hit = true;});
-        if (hit) {
-            this.mainCharacter.x = this.lastX;
-            this.mainCharacter.y = this.lastY;
-            let pressing = this.isPressingIntoBarrier();
-            if (pressing && !this.mainCharacter.isHurt()) {
-            this.mainCharacter.hit();
-            this.statusLife.setPercentage(this.mainCharacter.energy);
-            if (this.mainCharacter.energy <= 0  && !this.isGameOver) {
-                console.log('GAME OVER');
-                this.isGameOver = true;
-                this.triggerGameOverIfDead();
-            }}
-        } else {
-            this.lastX = this.mainCharacter.x;
-            this.lastY = this.mainCharacter.y;
-        }
+    isCollidingWithAnyBarrier() {
+        return this.level.barriers.some(b => this.mainCharacter.isColliding(b));
     }
+
+    resetPlayerToLastPosition() {
+        this.mainCharacter.x = this.lastX;
+        this.mainCharacter.y = this.lastY;
+    }
+
+    rememberPlayerPosition() {
+        this.lastX = this.mainCharacter.x;
+        this.lastY = this.mainCharacter.y;
+    } 
+
+    checkBarrierCollision() {
+        let hit = this.isCollidingWithAnyBarrier();
+        if (!hit) {
+            this.rememberPlayerPosition();
+            return;}
+        this.resetPlayerToLastPosition();
+        if (this.isPressingIntoBarrier() && !this.mainCharacter.isHurt()) {
+            this.applyDamage();
+        }
+    }   
 
     showGameOver() {
         document.getElementById('gameover')?.classList.remove('hidden');
@@ -111,7 +118,6 @@ class world {
         this.level.coins.forEach((coin, i) => {
             if (this.mainCharacter.isColliding(coin)) {
                 this.level.coins.splice(i, 1);
-                // this.mainCharacter.coins += 10;
                 this.mainCharacter.coins = Math.min(100, (this.mainCharacter.coins || 0) + 10);
                 this.statusCoins.setPercentage(this.mainCharacter.coins);
             }
