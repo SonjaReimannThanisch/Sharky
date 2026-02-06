@@ -42,12 +42,20 @@ class world {
         this.mainCharacter.world = this;
     }
 
+    triggerGameOverIfDead() {
+        if (this.mainCharacter.energy <= 0 && !this.isGameOver) {
+            this.isGameOver = true;
+            this.showGameOver();
+        }
+    }
+
     checkCollisions() {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if(this.mainCharacter.isColliding(enemy)) {
                     this.mainCharacter.hit();
                     this.statusLife.setPercentage(this.mainCharacter.energy);
+                    this.triggerGameOverIfDead();
                 }
             });
         }, 1000);
@@ -78,7 +86,7 @@ class world {
             if (this.mainCharacter.energy <= 0  && !this.isGameOver) {
                 console.log('GAME OVER');
                 this.isGameOver = true;
-                this.showGameOver();
+                this.triggerGameOverIfDead();
             }}
         } else {
             this.lastX = this.mainCharacter.x;
