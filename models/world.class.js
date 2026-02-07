@@ -13,12 +13,15 @@ class world {
     lastY = 0;
     isGameOver = false;
     TILE_WIDTH = 720;
+    enemyCollisionInterval = null;
 
 
 
 
     constructor(canvas, keyboard) {
         this.canvas = canvas;
+        this.draw();
+        this.checkCollisions();
         this.ctx = canvas.getContext('2d');
         this.level = createLevel1();
         this.keyboard = keyboard;
@@ -36,6 +39,7 @@ class world {
         this.mainCharacter.animate();
         this.draw();
         this.checkCollisions();
+        this.bindUi();
     }
 
     setWorld() {
@@ -56,14 +60,16 @@ class world {
     }
 
     checkCollisions() {
-        setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if(this.mainCharacter.isColliding(enemy)) {
-                    this.applyDamage();
-                }
+        if (this.enemyCollisionInterval) return;
+        this.enemyCollisionInterval = setInterval(() => {
+            this.level.enemies.forEach(enemy => {
+            if (this.mainCharacter.isColliding(enemy)) {
+                this.applyDamage();
+            }
             });
         }, 1000);
     }
+
 
     checkAttackCollisions() {
         this.attacks.forEach((attack) => {
@@ -107,6 +113,13 @@ class world {
     
     hideGameOver() {
         document.getElementById('gameover')?.classList.add('hidden');
+    }
+
+    bindUi() {
+        const restartBtn = document.getElementById('btn-restart');
+        if (restartBtn) {
+            restartBtn.onclick = () => this.restartGame();
+        }
     }
 
 
@@ -213,6 +226,24 @@ class world {
         requestAnimationFrame(() => this.draw());
     }
 
+    restartGame() {
+        clearInterval(this.enemyCollisionInterval);
+        this.enemyCollisionInterval = null;
+        this.hideGameOver();
+        this.isGameOver = false;
+        this.camera_x = 0;
+        this.attacks = [];
+        this.mainCharacter = new character();
+        this.setWorld();
+        this.mainCharacter.animate();
+        this.level = createLevel1();
+        this.statusLife.setPercentage(this.mainCharacter.energy);
+        this.statusCoins.setPercentage(0);
+        this.statusPoison.setPercentage(0);
+        this.checkCollisions();
+        this.draw();
+    }
+
     addObjectsToMap(objects) {
         objects.forEach(o => this.addToMap(o));
     }
@@ -238,4 +269,5 @@ class world {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
 }
